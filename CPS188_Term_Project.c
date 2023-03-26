@@ -35,6 +35,7 @@
 #define MAX_CHAR 100
 #define BUFF_MAX 200
 
+//Finds the number of data entry rows
 int dataArrayInit() {
 	int rowCount = 0;
 	char in;
@@ -57,6 +58,7 @@ int dataArrayInit() {
 	return rowCount;
 }
 
+//Removes "junk" characters from arrays
 void arrayCharClean(int row, char dataArray[row][MAX_CHAR]) {
 	bool cleaningCharacters = false;
 	
@@ -85,6 +87,7 @@ void arrayCharClean(int row, char dataArray[row][MAX_CHAR]) {
 	}
 }
 
+//Collects cell entries for each column needed
 void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][MAX_CHAR]) {
     int colCellDefault = colCell, indexCellDefault = indexCell, count = 0;
     char *token, lineBuffer[BUFF_MAX];
@@ -112,6 +115,7 @@ void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][M
     arrayCharClean(row, dataArray);
 }
 
+//Gives designated value to a specific string statement...
 double locationCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 	int r = -1;
 	
@@ -133,6 +137,7 @@ double locationCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 	return r;
 }
 
+//Gives designated value to a specific string statement...
 double ageGroupCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 	int r = -1;
 	
@@ -148,6 +153,7 @@ double ageGroupCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 	return r;
 }
 
+//Gives designated value to a specific string statement...
 double genderCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 	int r = -1;
 	
@@ -192,6 +198,8 @@ int main(void)
 		else
 			arrayStatsData[i][4] = atof(sizePercent[i]);
 	}
+	
+	//put calculation code here...
 	
 	//debug junk -> delete later!
 	printf("%d\n\n", row);
