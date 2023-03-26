@@ -68,7 +68,7 @@ int main(void)
 		sp  = strtok(NULL, "," );	
 		strcpy(COORDINATE, sp);
 		
-		sp  = strtok(NULL, ",\"" ); //removes the ","
+		sp  = strtok(NULL, "\"" ); //removes the "
 		VALUE = atof(sp); //converts the pointer into a float number to be used (THIS IS WHAT we need the percentage)
 		//strcpy(VALUE, sp);
 
