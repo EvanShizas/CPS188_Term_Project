@@ -112,6 +112,54 @@ void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][M
     arrayCharClean(row, dataArray);
 }
 
+double locationCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "Canada (excluding territories)") == 0)
+		r = 21;
+	
+	else if (strcmp(dataArray[i], "Quebec") == 0)
+		r = 22;
+	
+	else if (strcmp(dataArray[i], "Ontario") == 0)
+		r = 23;
+	
+	else if (strcmp(dataArray[i], "Alberta") == 0)
+		r = 24;
+	
+	else if (strcmp(dataArray[i], "British Columbia") == 0)
+		r = 25;
+		
+	return r;
+}
+
+double ageGroupCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "35 to 49 years") == 0)
+		r = 31;
+		
+	else if (strcmp(dataArray[i], "50 to 64 years") == 0)
+		r = 32;
+	
+	else if (strcmp(dataArray[i], "65 years and over") == 0)
+		r = 33;
+	
+	return r;
+}
+
+double genderCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "Males") == 0)
+		r = 41;
+		
+	else if (strcmp(dataArray[i], "Females") == 0)
+		r = 42;
+	
+	return r;
+}
+
 int main(void)
 {
 	int col = 5, row = dataArrayInit();
@@ -128,10 +176,26 @@ int main(void)
 	dataArrayCollect(row, 5, 0, gender);
 	dataArrayCollect(row, 14, 0, sizePercent);
 	
+	//Transfers data into one multidimensional array...
+	for (int i = 0; i < row; i++) {
+		arrayStatsData[i][0] = atof(year[i]);		
+		arrayStatsData[i][1] = locationCondition(row, i, location);
+		arrayStatsData[i][2] = ageGroupCondition(row, i, ageGroup);
+		arrayStatsData[i][3] = genderCondition(row, i, gender);
+		arrayStatsData[i][4] = atof(sizePercent[i]);
+	}
+	
 	//debug junk -> delete later!
 	printf("%d\n\n", row);
 	for (int i = 1; i < row; i++) {
 		printf("%s\n", sizePercent[i]);
+	}
+	printf("----------------------------------------\n\n");
+	for (int i = 1; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			printf("%lf || ", arrayStatsData[i][j]);
+		}
+		printf("\n");
 	}
 	
 	return 0;
