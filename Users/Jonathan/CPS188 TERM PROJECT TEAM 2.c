@@ -84,8 +84,7 @@ int main(void)
 		sp  = strtok(NULL, "," );		
 		strcpy(DECIMALS, sp);
 		
-		printf("%s  %s  %s  %s  %s  %0.1lf  \n", 
-		REF_DATE, GEO, DGUID, Age_Group, Sex, VALUE); //prints out the important stuff
+		printf("%s | %s | %s | %s | %s | %0.1lf  \n", REF_DATE, GEO, DGUID, Age_Group, Sex, VALUE); //prints out the important stuff
 		
 	//printf("%s  %s  %s  %s  %s  %s  %s  %s  %s  %s %s  %s  %s %0.1lf  %s %s  %s  %s\n", REF_DATE, GEO, DGUID, Age_Group, Sex, Indicators, Characteristics, UOM, UOM_ID, SCALAR_FACTOR,
 	//SCALAR_ID, VECTOR, COORDINATE, VALUE, STATUS, SYMBOL, TERMINATED, DECIMALS);
