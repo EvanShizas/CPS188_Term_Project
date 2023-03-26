@@ -68,7 +68,7 @@ int main(void)
 		sp  = strtok(NULL, "," );	
 		strcpy(COORDINATE, sp);
 		
-		sp  = strtok(NULL, ",\"" ); //removes the ","
+		sp  = strtok(NULL, "\"" ); //removes the " (quotation marks)
 		VALUE = atof(sp); //converts the pointer into a float number to be used (THIS IS WHAT we need the percentage)
 		//strcpy(VALUE, sp);
 
@@ -87,10 +87,11 @@ int main(void)
 		printf("%s  %s  %s  %s  %s  %0.1lf  \n", 
 		REF_DATE, GEO, DGUID, Age_Group, Sex, VALUE); //prints out the important stuff
 		
-	//printf("%s  %s  %s  %s  %s  %s  %s  %s  %s  %s %s  %s  %s %0.2lf  %s %s  %s  %s\n", REF_DATE, GEO, DGUID, Age_Group, Sex, Indicators, Characteristics, UOM, UOM_ID, SCALAR_FACTOR,
-	//	SCALAR_ID, VECTOR, COORDINATE, VALUE, STATUS, SYMBOL, TERMINATED, DECIMALS);
+	//printf("%s  %s  %s  %s  %s  %s  %s  %s  %s  %s %s  %s  %s %0.1lf  %s %s  %s  %s\n", REF_DATE, GEO, DGUID, Age_Group, Sex, Indicators, Characteristics, UOM, UOM_ID, SCALAR_FACTOR,
+	//SCALAR_ID, VECTOR, COORDINATE, VALUE, STATUS, SYMBOL, TERMINATED, DECIMALS);
+	
 	}
-		
+	
 	fclose(statistic);
 	
 	return 0;
