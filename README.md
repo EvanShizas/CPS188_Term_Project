@@ -10,18 +10,18 @@ For any blank entries in the CSV have been denoted with an '@' symbol; this will
  
 The following information the digit designation for all string statements:
 
-21.0 -> "Canada (excluding territories)"
-22.0 -> "Quebec"
-23.0 -> "Ontario"
-24.0 -> "Alberta"
-25.0 -> "British Columbia"
---
-31.0 -> "35 to 49 years"
-32.0 -> "50 to 64 years"
-33.0 -> "65 years and over"
---
-41.0 -> "Males"
-42.0 -> "Females"
+- 21.0 -> "Canada (excluding territories)"
+- 22.0 -> "Quebec"
+- 23.0 -> "Ontario"
+- 24.0 -> "Alberta"
+- 25.0 -> "British Columbia"
+
+- 31.0 -> "35 to 49 years"
+- 32.0 -> "50 to 64 years"
+- 33.0 -> "65 years and over"
+
+- 41.0 -> "Males"
+- 42.0 -> "Females"
 
 The first digit represents the column in which the digit should be located in
 in arrayStatsData[][], with the second digit being the differentiator between 
@@ -29,11 +29,11 @@ the possible string statements for that column.
 
 The columns are organized as follows:
 
-1 -> Reference Year (2015 - 2021)
-2 -> Location (21.0 - 25.0)
-3 -> Age Group (31.0 - 33.0)
-4 -> Gender (41.0 - 42.0)
-5 -> Percent Population (%)
+- 1 -> Reference Year (2015 - 2021)
+- 2 -> Location (21.0 - 25.0)
+- 3 -> Age Group (31.0 - 33.0)
+- 4 -> Gender (41.0 - 42.0)
+- 5 -> Percent of Population (%)
 
 This README.md will be modified as the project moves along; make sure to stay updated on any new additions!
 
