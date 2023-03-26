@@ -178,11 +178,19 @@ int main(void)
 	
 	//Transfers data into one multidimensional array...
 	for (int i = 0; i < row; i++) {
-		arrayStatsData[i][0] = atof(year[i]);		
+		if (strcmp(year[i], "@") == 0)
+			arrayStatsData[i][0] = -1;
+		else
+			arrayStatsData[i][0] = atof(year[i]);
+			
 		arrayStatsData[i][1] = locationCondition(row, i, location);
 		arrayStatsData[i][2] = ageGroupCondition(row, i, ageGroup);
 		arrayStatsData[i][3] = genderCondition(row, i, gender);
-		arrayStatsData[i][4] = atof(sizePercent[i]);
+		
+		if (strcmp(sizePercent[i], "@") == 0)
+			arrayStatsData[i][4] = -1;
+		else
+			arrayStatsData[i][4] = atof(sizePercent[i]);
 	}
 	
 	//debug junk -> delete later!
