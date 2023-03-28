@@ -192,10 +192,9 @@ int main(void)
 	}
 
 //CALCULATION FOR PROVINCIAL AVG
-	puts("QUESTION 1a: \n");
+	puts("QUESTION 1a:");
 //Printing Quebec AVG		 
 	double sumQC = 0,  cQC = 0;
-	puts("Quebec");
 	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 22.0)
@@ -215,7 +214,6 @@ int main(void)
 
 //Printing Ontario AVG
 	double sumON = 0,  cON = 0;
-	puts("Ontario\n");
 	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 23.0)
@@ -234,8 +232,7 @@ int main(void)
     //printf("%0.0lf", cON);
     
 //Printing Alberta AVG
-    double sumAB = 0, cAB = 0;
-    puts("Alberta\n");
+		double sumAB = 0, cAB = 0;
     	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 24.0)
@@ -255,7 +252,6 @@ int main(void)
 	
 //Printing British Columbia AVG
         double sumBC = 0, cBC = 0;
-        puts("British Columbia\n");
     	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 25.0)
@@ -273,6 +269,30 @@ int main(void)
     }    		
     printf("The Percent Average for British Columbia: %0.2lf\n", sumBC/ cBC);
     //printf("%0.0lf", cBC);
+    
+    //Printing National AVG (Canada Excluding Territores)    
+		puts("Question 1b: "); 	
+        double sumNA = 0, cNA = 0;
+    	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 21.0)
+        {		
+			cNA++;
+            //printf("%0.1lf\n", arrayStatsData[i][4]);
+			sumNA = arrayStatsData[i][4] + sumNA;
+
+			if (arrayStatsData[i][4] == 0.0)
+			{
+				cNA = cNA - 1;
+			}
+
+        }            
+    }   
+	
+    printf("The Percent Average for National (Canada Excluding Territores): %0.2lf\n", sumNA/ cNA);
+    //printf("%0.0lf", cNA);
+
+
     
 
 
