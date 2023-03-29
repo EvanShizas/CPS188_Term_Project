@@ -1,97 +1,337 @@
 #include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
 #include <string.h>
-#include <stdlib.h>
-#define size 1000
+#include <ctype.h>
 
-/* DESCRIPTION: This is the alternative to Talha's code that I made, so far I am able to retrieve the string each line and store the terms seperated by "comma"
-	  I was also able to convert the VALUE (percentage of each value from data) to a float number so we can use for our calculation. NOTE we dont have to use my
-	  code. I was just playing around how to read csv files and put each term into its string and convert pointer into floats. There are also extra commented out codes
-	  there that can be removed later. Encase we ever need the other columns, this code retrieves it all :)*/ 
+#define MAX_CHAR 100
+#define BUFF_MAX 200
 
-int main(void) 
+//Finds the number of data entry rows
+int dataArrayInit() 
 {
-	FILE *statistic; //opens file 
-	char data[size]; //array that stores the contents of the file	
-	statistic = fopen("statscan_diabetes.csv", "r"); 
+	int rowCount = 0;
+	char in;
+	FILE *rowCheck = fopen("statscan_diabetes.csv", "r");
 	
-	char *sp; //string pointer
-	
-	char REF_DATE[size], GEO[size], DGUID[size], Age_Group[size], Sex[size], Indicators[size], Characteristics[size], UOM[size], UOM_ID[size], SCALAR_FACTOR[size],
-			SCALAR_ID[size], VECTOR[size], COORDINATE[size], /*VALUE[size],*/ STATUS[size], SYMBOL[size], TERMINATED[size], DECIMALS[size];		
-	
-	//char REF_DATE[size], GEO[size], DGUID[size], Age_Group[size], Sex[size];
-	float VALUE; 
-
-	while (fgets(data, size, statistic) != NULL) //while loop that reads the statistic file and store it into a data array
+	//File validation...
+	if (rowCheck == NULL) 
 	{
-		//int counter = 0;
-	    //counter++;
-		//printf("%s\n", data);
-		//puts("");
-
-		sp  = strtok(data, "," ); //takes the first term (token) before it hits the first ,
-		strcpy(REF_DATE, sp); //copy contents of pointer into REF_DATE Array
-
-		sp  = strtok(NULL, "," ); //read till it hits the next ,
-		strcpy(GEO, sp);
-				
-		sp  = strtok(NULL, "," );
-		strcpy(DGUID, sp);
-
-		sp  = strtok(NULL, "," );		
-		strcpy(Age_Group, sp);
-				
-		sp  = strtok(NULL, "," );	
-		strcpy(Sex, sp);
-
-		sp  = strtok(NULL, "," );	
-		strcpy(Indicators, sp);
-		
-		sp  = strtok(NULL, "," );		
-		strcpy(Characteristics, sp);
-		
-		sp  = strtok(NULL, "," );	
-		strcpy(UOM, sp);
-		
-		sp  = strtok(NULL, "," );	
-		strcpy(UOM_ID, sp);
-		
-		sp  = strtok(NULL, "," );		
-		strcpy(SCALAR_FACTOR, sp);
-
-		sp  = strtok(NULL, "," );	
-		strcpy(SCALAR_ID, sp);
-		
-		sp  = strtok(NULL, "," );	
-		strcpy(VECTOR, sp);
-		
-		sp  = strtok(NULL, "," );	
-		strcpy(COORDINATE, sp);
-		
-		sp  = strtok(NULL, "\"" ); //removes the " (quotation marks)
-		VALUE = atof(sp); //converts the pointer into a float number to be used (THIS IS WHAT we need the percentage)
-		//strcpy(VALUE, sp);
-
-		sp  = strtok(NULL, "," );	
-		strcpy(STATUS, sp);
-		
-		sp  = strtok(NULL, "," );	
-		strcpy(SYMBOL, sp);
-		
-		sp  = strtok(NULL, "," );		
-		strcpy(TERMINATED, sp);
-		
-		sp  = strtok(NULL, "," );		
-		strcpy(DECIMALS, sp);
-		
-		printf("%s | %s | %s | %s | %s | %0.1lf  \n", REF_DATE, GEO, DGUID, Age_Group, Sex, VALUE); //prints out the important stuff
-		
-	//printf("%s  %s  %s  %s  %s  %s  %s  %s  %s  %s %s  %s  %s %0.1lf  %s %s  %s  %s\n", REF_DATE, GEO, DGUID, Age_Group, Sex, Indicators, Characteristics, UOM, UOM_ID, SCALAR_FACTOR,
-	//SCALAR_ID, VECTOR, COORDINATE, VALUE, STATUS, SYMBOL, TERMINATED, DECIMALS);
-	
+		printf("Error: File could not be opened! Try again!");
+		return 1;
 	}
 	
-	fclose(statistic);
+	for (in = getc(rowCheck); in != EOF; in = getc(rowCheck)) 
+	{
+		if (in == '\n') 
+		{
+			rowCount++;
+		}
+	}
 	
+	fclose(rowCheck);	
+	return rowCount;
+}
+
+//Removes "junk" characters from arrays
+void arrayCharClean(int row, char dataArray[row][MAX_CHAR]) {
+	bool cleaningCharacters = false;
+	
+	//Removes the quotation marks from the entries...
+	for (int i = 1; i < row; i++) 
+	{
+		for (int j = 0; j < MAX_CHAR; j++) 
+			{
+				if (dataArray[i][j] == '\"' && cleaningCharacters) 
+				{
+					cleaningCharacters = false;
+					dataArray[i][j-1] = '\0';
+					dataArray[i][j] = '\0';
+					break;
+				}
+			
+				else if (dataArray[i][j] == '\"' || cleaningCharacters) 
+				{
+					cleaningCharacters = true;
+					dataArray[i][j] = dataArray[i][j+1];
+				}
+		}
+	}
+	
+	//Marks the entries left blank with a "special" identifying character...
+	for (int i = 1; i < row; i++) 
+	{
+		if (dataArray[i][0] == '\0') 
+		{
+			dataArray[i][0] = '@';
+		}
+	}
+}
+
+//Collects cell entries for each column needed
+void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][MAX_CHAR]) 
+{
+    int colCellDefault = colCell, indexCellDefault = indexCell, count = 0;
+    char *token, lineBuffer[BUFF_MAX];
+	FILE *input = fopen("statscan_diabetes.csv", "r"); //Reads each data row of the CSV file and stores the specified column in the array...
+	
+	while (fgets(lineBuffer, BUFF_MAX, input) != NULL) 
+	{
+		colCell = colCellDefault, indexCell = indexCellDefault;	
+		token = strtok(lineBuffer, ","); //Parse the row into fields separated by commas...
+		
+		while (token != NULL) 
+		{
+			indexCell++;
+			
+			if (indexCell == colCell) 
+			{
+				strncpy(dataArray[count], token, BUFF_MAX);
+				count++;
+				break;
+			}
+			
+			token = strtok(NULL, ",");
+		}
+	}
+    
+    fclose(input);
+    arrayCharClean(row, dataArray);
+}
+
+//Gives designated value to a specific string statement...
+double locationCondition(int row, int i, char dataArray[row][MAX_CHAR]) 
+{
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "Canada (excluding territories)") == 0)
+		r = 21;
+	
+	else if (strcmp(dataArray[i], "Quebec") == 0)
+		r = 22;
+	
+	else if (strcmp(dataArray[i], "Ontario") == 0)
+		r = 23;
+	
+	else if (strcmp(dataArray[i], "Alberta") == 0)
+		r = 24;
+	
+	else if (strcmp(dataArray[i], "British Columbia") == 0)
+		r = 25;
+		
+	return r;
+}
+
+//Gives designated value to a specific string statement...
+double ageGroupCondition(int row, int i, char dataArray[row][MAX_CHAR]) 
+{
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "35 to 49 years") == 0)
+		r = 31;
+		
+	else if (strcmp(dataArray[i], "50 to 64 years") == 0)
+		r = 32;
+	
+	else if (strcmp(dataArray[i], "65 years and over") == 0)
+		r = 33;
+	
+	return r;
+}
+
+//Gives designated value to a specific string statement...
+double genderCondition(int row, int i, char dataArray[row][MAX_CHAR]) 
+{
+	int r = -1;
+	
+	if (strcmp(dataArray[i], "Males") == 0)
+		r = 41;
+		
+	else if (strcmp(dataArray[i], "Females") == 0)
+		r = 42;
+	
+	return r;
+}
+
+int main(void)
+{
+	int col = 5, row = dataArrayInit();
+	double arrayStatsData[row][col];
+	char year[row][MAX_CHAR], location[row][MAX_CHAR], ageGroup[row][MAX_CHAR], gender[row][MAX_CHAR], sizePercent[row][MAX_CHAR];
+	
+	//Seems to have fixed itself. Keep incase all goes to shit again!
+	//char *ptr[MAX_CHAR]; //Using this keeps a strange memory crapshit from happening apparently...
+	
+	//Reads and collects the respective data for each category...
+	dataArrayCollect(row, 1, 0, year);
+	dataArrayCollect(row, 2, 0, location);
+	dataArrayCollect(row, 4, 0, ageGroup);
+	dataArrayCollect(row, 5, 0, gender);
+	dataArrayCollect(row, 14, 0, sizePercent);
+	
+	//Transfers data into one multidimensional array...
+	for (int i = 0; i < row; i++) 
+	{
+		if (strcmp(year[i], "@") == 0)
+			arrayStatsData[i][0] = -1;
+		else
+			arrayStatsData[i][0] = atof(year[i]);
+			
+		arrayStatsData[i][1] = locationCondition(row, i, location);
+		arrayStatsData[i][2] = ageGroupCondition(row, i, ageGroup);
+		arrayStatsData[i][3] = genderCondition(row, i, gender);
+		
+		if (strcmp(sizePercent[i], "@") == 0)
+		{
+			arrayStatsData[i][4] = -1;
+		}
+		else
+			arrayStatsData[i][4] = atof(sizePercent[i]);
+		
+	}
+
+//CALCULATION FOR PROVINCIAL AVG
+	puts("QUESTION 1a:");
+//Printing Quebec AVG		 
+	double sumQC = 0,  cQC = 0;
+	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 22.0)
+        {		   
+			 if (arrayStatsData[i][4] != -1)
+			{
+				sumQC += arrayStatsData[i][4];
+				cQC++;
+			}
+        }    
+    }    		
+    printf("The Percent Average for Quebec: %0.2lf\n", sumQC/ cQC);
+    //printf("%0.0lf", cQC);
+
+//Printing Ontario AVG
+	double sumON = 0,  cON = 0;
+	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 23.0)
+        {		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumON += arrayStatsData[i][4];
+				cON++;
+			}  
+        }        
+    }    		
+    printf("The Percent Average for Ontario : %0.2lf\n", sumON/ cON);
+    //printf("%0.0lf", cON);
+    
+//Printing Alberta AVG
+		double sumAB = 0, cAB = 0;
+    	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 24.0)
+        {		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumAB += arrayStatsData[i][4];
+				cAB++;
+			} 
+        }            
+    }    		
+    printf("The Percent Average for Alberta: %0.2lf\n", sumAB/ cAB);
+    //printf("%0.0lf", cAB);	
+	
+//Printing British Columbia AVG
+        double sumBC = 0, cBC = 0;
+    	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 25.0)
+        {		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumBC += arrayStatsData[i][4];
+				cBC++;
+			} 
+
+        }            
+    }    		
+    printf("The Percent Average for British Columbia: %0.2lf\n", sumBC/ cBC);
+    //printf("%0.0lf", cBC);
+    
+    //Printing National AVG (Canada Excluding Territores)    
+		puts("Question 1b: "); 	
+        double sumNA = 0, cNA = 0;
+    	for (int i = 1; i < row; i++) 
+	{
+        if(arrayStatsData[i][1] == 21.0)
+        {		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumNA += arrayStatsData[i][4];
+				cNA++;
+			} 
+        }            
+    }   
+	
+    printf("The Percent Average for National (Canada Excluding Territores): %0.2lf\n", sumNA/ cNA);
+    //printf("%0.0lf", cNA);
+
+
+    
+
+
+    
+	//DEBUG JUNK - DELETE LATER
+	/*	
+	printf("%d\n\n", row);
+	
+	for (int i = 1; i < row; i++) {
+		printf("%s\n", sizePercent[i]);
+		
+	} 
+	printf("----------------------------------------\n\n");
+	for (int i = 1; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			printf("%lf || ", arrayStatsData[i][j]);
+		}
+		printf("\n");
+	}
+	*/
 	return 0;
 }
+
+/* Important Details:
+ * 
+ * For any blank entries in the CSV have been denoted with an '@' symbol; 
+ * this will be substituted with a '-1' value in arrayStatsData[][]. All data 
+ * for the questions will be retrieved from arrayStatsData[][] variable to
+ * simplify casting double values. String data will be given specific 
+ * designation digits which will be run through switch-case statements in 
+ * order to match the original string to the data.
+ * 
+ * The following information the digit designation for all string statements:
+ * 
+ * 21.0 -> "Canada (excluding territories)"
+ * 22.0 -> "Quebec"
+ * 23.0 -> "Ontario"
+ * 24.0 -> "Alberta"
+ * 25.0 -> "British Columbia"
+ * 
+ * 31.0 -> "35 to 49 years"
+ * 32.0 -> "50 to 64 years"
+ * 33.0 -> "65 years and over"
+ * 
+ * 41.0 -> "Males"
+ * 42.0 -> "Females"
+ * 
+ * The first digit represents the column in which the digit should be located in
+ * in arrayStatsData[][], with the second digit being the differentiator between 
+ * the possible string statements for that column.
+ * 
+ * The columns are organized as follows:
+ * 
+ * 1 -> Reference Year (2015 - 2021)
+ * 2 -> Location (21.0 - 25.0)
+ * 3 -> Age Group (31.0 - 33.0)
+ * 4 -> Gender (41.0 - 42.0)
+ * 5 -> Percent of Population (%)
+ */
