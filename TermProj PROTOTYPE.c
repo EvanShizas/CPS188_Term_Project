@@ -220,22 +220,22 @@ int main(void)
 				cON++;
 			}  
 	        }        
-    }    		
+    	}    		
     printf("The Percent Average for Ontario : %0.2lf\n", sumON/ cON);
     //printf("%0.0lf", cON);
     
 //Printing Alberta AVG
 	double sumAB = 0, cAB = 0;
     for (int i = 1; i < row; i++) 
-	{
-        	if(arrayStatsData[i][1] == 24.0)
-        	{		
+    {
+	    if(arrayStatsData[i][1] == 24.0)
+	    {		
 			if (arrayStatsData[i][4] != -1)
 			{
 				sumAB += arrayStatsData[i][4];
 				cAB++;
-			} 
-        	}            
+			}
+	    }
     }    		
     printf("The Percent Average for Alberta: %0.2lf\n", sumAB/ cAB);
     //printf("%0.0lf", cAB);	
@@ -243,16 +243,16 @@ int main(void)
 //Printing British Columbia AVG
     double sumBC = 0, cBC = 0;
     for (int i = 1; i < row; i++) 
-	{
-        	if(arrayStatsData[i][0] == 2015)
-        	{		
-			if (arrayStatsData[i][4] != -1)
-			{
+    {
+       	if(arrayStatsData[i][0] == 2015)
+       	{	
+		if (arrayStatsData[i][4] != -1)
+		{
 				//printf("%lf", arrayStatsData[i][4]);
-				sumBC += arrayStatsData[i][4];
-				cBC++;
-			} 
-        	}            
+			sumBC += arrayStatsData[i][4];
+			cBC++;
+		} 
+        }
     }    		
     printf("The Percent Average for British Columbia: %0.2lf\n", sumBC/ cBC);
     puts("");
@@ -262,15 +262,15 @@ int main(void)
 	puts("Question 1b: "); 	
     double sumNA = 0, cNA = 0;
     for (int i = 1; i < row; i++) 
-	{
-        	if(arrayStatsData[i][1] == 21.0)
-        	{		
-			if (arrayStatsData[i][4] != -1)
-			{
-				sumNA += arrayStatsData[i][4];
-				cNA++;
-			} 
-        	}            
+    {
+       	if(arrayStatsData[i][1] == 21.0)
+       	{		
+		if (arrayStatsData[i][4] != -1)
+		{
+			sumNA += arrayStatsData[i][4];
+			cNA++;
+		} 
+        }            
     }   
 	
     printf("The Percent Average for National (Canada Excluding Territores): %0.2lf\n", sumNA/ cNA);
@@ -285,88 +285,88 @@ int main(void)
     for (int i = 1; i < row; i++) 
     {
         if(arrayStatsData[i][1] == 21.0)
-        	{
-			if (arrayStatsData[i][0] == 2015)
+       	{
+		if (arrayStatsData[i][0] == 2015)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr15 += arrayStatsData[i][4];
 				cNAYr15++;
-				} 
 			} 
-		}
+		} 
+	}
 		
-		if(arrayStatsData[i][1] == 21.0)
-	        {
-			if (arrayStatsData[i][0] == 2016)
+	if(arrayStatsData[i][1] == 21.0)
+	{
+		if (arrayStatsData[i][0] == 2016)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr16 += arrayStatsData[i][4];
 				cNAYr16++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 21.0)
-	        {
-			if (arrayStatsData[i][0] == 2017)
+	{
+		if (arrayStatsData[i][0] == 2017)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr17 += arrayStatsData[i][4];
 				cNAYr17++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 21.0)
-        	{
-			if (arrayStatsData[i][0] == 2018)
+	{
+		if (arrayStatsData[i][0] == 2018)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr18 += arrayStatsData[i][4];
 				cNAYr18++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 21.0)
-        	{
-			if (arrayStatsData[i][0] == 2019)
+       	{
+		if (arrayStatsData[i][0] == 2019)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr19 += arrayStatsData[i][4];
 				cNAYr19++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 21.0)
-        	{
-			if (arrayStatsData[i][0] == 2020)
+       	{
+		if (arrayStatsData[i][0] == 2020)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr20 += arrayStatsData[i][4];
 				cNAYr20++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 21.0)
-	        {
-			if (arrayStatsData[i][0] == 2021)
+        {
+		if (arrayStatsData[i][0] == 2021)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumNAYr21 += arrayStatsData[i][4];
 				cNAYr21++;
-				} 
 			} 
-		}           
+		} 
+	}           
     }   
 	
     printf("The Percent Average for National (Canada Excluding Territores)in the year 2015: %0.2lf\n", sumNAYr15/ cNAYr15);
@@ -383,93 +383,93 @@ int main(void)
 		         sumQCYr18 = 0, cQCYr18 = 0, sumQCYr19 = 0, cQCYr19 = 0, sumQCYr20 = 0, cQCYr20 = 0,
 		         sumQCYr21 = 0, cQCYr21 = 0;
     for (int i = 1; i < row; i++) 
-	{
+    {
         if(arrayStatsData[i][1] == 22.0)
-        	{
-			if (arrayStatsData[i][0] == 2015)
+        {
+		if (arrayStatsData[i][0] == 2015)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr15 += arrayStatsData[i][4];
 				cQCYr15++;
-				} 
 			} 
-		}
+		} 
+	}
 		
-		if(arrayStatsData[i][1] == 22.0)
-	        {
-			if (arrayStatsData[i][0] == 2016)
+	if(arrayStatsData[i][1] == 22.0)
+	{
+		if (arrayStatsData[i][0] == 2016)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr16 += arrayStatsData[i][4];
 				cQCYr16++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 22.0)
-	        {
-			if (arrayStatsData[i][0] == 2017)
+        {
+		if (arrayStatsData[i][0] == 2017)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr17 += arrayStatsData[i][4];
 				cQCYr17++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 22.0)
-        	{
-			if (arrayStatsData[i][0] == 2018)
+	{
+		if (arrayStatsData[i][0] == 2018)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr18 += arrayStatsData[i][4];
 				cQCYr18++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 22.0)
-        	{
-			if (arrayStatsData[i][0] == 2019)
+       	{
+		if (arrayStatsData[i][0] == 2019)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr19 += arrayStatsData[i][4];
 				cQCYr19++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 22.0)
-        	{
-			if (arrayStatsData[i][0] == 2020)
+       	{
+		if (arrayStatsData[i][0] == 2020)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr20 += arrayStatsData[i][4];
 				cQCYr20++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 22.0)
-        	{
-			if (arrayStatsData[i][0] == 2021)
+       	{
+		if (arrayStatsData[i][0] == 2021)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumQCYr21 += arrayStatsData[i][4];
 				cQCYr21++;
-				} 
 			} 
-		}
+		} 
+	}
 			           
-    }   
-	puts(" ");
+    }
+    puts(" ");
     printf("The Percent Average for Quebec in the year 2015: %0.2lf\n", sumQCYr15/ cQCYr15);
     printf("The Percent Average for Quebec in the year 2016: %0.2lf\n", sumQCYr16/ cQCYr16);
     printf("The Percent Average for Quebec in the year 2017: %0.2lf\n", sumQCYr17/ cQCYr17);
@@ -483,93 +483,93 @@ int main(void)
 		         sumONYr18 = 0, cONYr18 = 0, sumONYr19 = 0, cONYr19 = 0, sumONYr20 = 0, cONYr20 = 0,
 		         sumONYr21 = 0, cONYr21 = 0;
     for (int i = 1; i < row; i++) 
-	{
-        if(arrayStatsData[i][1] == 23.0)
-        	{
-			if (arrayStatsData[i][0] == 2015)
+    {
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		if (arrayStatsData[i][0] == 2015)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr15 += arrayStatsData[i][4];
 				cONYr15++;
-				} 
 			} 
-		}
-		
-		if(arrayStatsData[i][1] == 23.0)
-	        {
-			if (arrayStatsData[i][0] == 2016)
+		} 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		    if (arrayStatsData[i][0] == 2016)
+		    {
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr16 += arrayStatsData[i][4];
 				cONYr16++;
-				} 
 			} 
-		}
-
-        if(arrayStatsData[i][1] == 23.0)
-	        {
-			if (arrayStatsData[i][0] == 2017)
-			{
-				if (arrayStatsData[i][4] != -1)
-				{
+		    } 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		    if (arrayStatsData[i][0] == 2017)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
 				sumONYr17 += arrayStatsData[i][4];
 				cONYr17++;
-				} 
-			} 
-		}
-
-        if(arrayStatsData[i][1] == 23.0)
-	        {
-			if (arrayStatsData[i][0] == 2018)
+			    } 
+		    } 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		if (arrayStatsData[i][0] == 2018)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr18 += arrayStatsData[i][4];
 				cONYr18++;
-				} 
 			} 
-		}
+		} 
+	    }
 		
-        if(arrayStatsData[i][1] == 23.0)
-        	{
-			if (arrayStatsData[i][0] == 2019)
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		if (arrayStatsData[i][0] == 2019)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr19 += arrayStatsData[i][4];
 				cONYr19++;
-				} 
 			} 
-		}
-		
-        if(arrayStatsData[i][1] == 23.0)
-        	{
-			if (arrayStatsData[i][0] == 2020)
+		} 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		if (arrayStatsData[i][0] == 2020)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr20 += arrayStatsData[i][4];
 				cONYr20++;
-				} 
 			} 
-		}
+		} 
+	    }
 		
-        if(arrayStatsData[i][1] == 23.0)
-        	{
-			if (arrayStatsData[i][0] == 2021)
+	    if(arrayStatsData[i][1] == 23.0)
+	    {
+		if (arrayStatsData[i][0] == 2021)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumONYr21 += arrayStatsData[i][4];
 				cONYr21++;
-				} 
 			} 
-		}
+		} 
+	    }
 			           
     }   
-	puts(" ");
+    puts(" ");
     printf("The Percent Average for Ontario in the year 2015: %0.2lf\n", sumONYr15/ cONYr15);
     printf("The Percent Average for Ontario in the year 2016: %0.2lf\n", sumONYr16/ cONYr16);
     printf("The Percent Average for Ontario in the year 2017: %0.2lf\n", sumONYr17/ cONYr17);
@@ -583,93 +583,93 @@ int main(void)
 		         sumABYr18 = 0, cABYr18 = 0, sumABYr19 = 0, cABYr19 = 0, sumABYr20 = 0, cABYr20 = 0,
 		         sumABYr21 = 0, cABYr21 = 0;
     for (int i = 1; i < row; i++) 
-	{
-        if(arrayStatsData[i][1] == 24.0)
-        	{
-			if (arrayStatsData[i][0] == 2015)
+    {
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2015)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr15 += arrayStatsData[i][4];
 				cABYr15++;
-				} 
 			} 
-		}
+		} 
+	    }
 		
-		if(arrayStatsData[i][1] == 24.0)
-	        {
-			if (arrayStatsData[i][0] == 2016)
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2016)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr16 += arrayStatsData[i][4];
 				cABYr16++;
-				} 
 			} 
-		}
-
-        if(arrayStatsData[i][1] == 24.0)
-	        {
-			if (arrayStatsData[i][0] == 2017)
+		} 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2017)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr17 += arrayStatsData[i][4];
 				cABYr17++;
-				} 
 			} 
-		}
+		} 
+	    }
 
-        if(arrayStatsData[i][1] == 24.0)
-	        {
-			if (arrayStatsData[i][0] == 2018)
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2018)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr18 += arrayStatsData[i][4];
 				cABYr18++;
-				} 
 			} 
-		}
+		} 
+	    }
 		
-        if(arrayStatsData[i][1] == 24.0)
-        	{
-			if (arrayStatsData[i][0] == 2019)
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2019)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr19 += arrayStatsData[i][4];
 				cABYr19++;
-				} 
 			} 
-		}
-		
-        if(arrayStatsData[i][1] == 24.0)
-        	{
-			if (arrayStatsData[i][0] == 2020)
+		} 
+	    }
+	    
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2020)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr20 += arrayStatsData[i][4];
 				cABYr20++;
-				} 
 			} 
-		}
+		} 
+	    }
 		
-        if(arrayStatsData[i][1] == 24.0)
-        	{
-			if (arrayStatsData[i][0] == 2021)
+	    if(arrayStatsData[i][1] == 24.0)
+	    {
+		if (arrayStatsData[i][0] == 2021)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumABYr21 += arrayStatsData[i][4];
 				cABYr21++;
-				} 
 			} 
-		}
+		} 
+	    }
 			           
     }   
-	puts(" ");
+    puts(" ");
     printf("The Percent Average for Alberta in the year 2015: %0.2lf\n", sumABYr15/ cABYr15);
     printf("The Percent Average for Alberta in the year 2016: %0.2lf\n", sumABYr16/ cABYr16);
     printf("The Percent Average for Alberta in the year 2017: %0.2lf\n", sumABYr17/ cABYr17);
@@ -683,93 +683,93 @@ int main(void)
 		         sumBCYr18 = 0, cBCYr18 = 0, sumBCYr19 = 0, cBCYr19 = 0, sumBCYr20 = 0, cBCYr20 = 0,
 		         sumBCYr21 = 0, cBCYr21 = 0;
     for (int i = 1; i < row; i++) 
-	{
+    {
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2015)
+     	{
+		if (arrayStatsData[i][0] == 2015)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr15 += arrayStatsData[i][4];
 				cBCYr15++;
-				} 
 			} 
-		}
-		
-		if(arrayStatsData[i][1] == 25.0)
-	        {
-			if (arrayStatsData[i][0] == 2016)
+		} 
+	}
+	    
+	if(arrayStatsData[i][1] == 25.0)
+        {
+		if (arrayStatsData[i][0] == 2016)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr16 += arrayStatsData[i][4];
 				cBCYr16++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2017)
+	{
+		if (arrayStatsData[i][0] == 2017)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr17 += arrayStatsData[i][4];
 				cBCYr17++;
-				} 
 			} 
-		}
+		} 
+	}
 
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2018)
+       	{
+		if (arrayStatsData[i][0] == 2018)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr18 += arrayStatsData[i][4];
 				cBCYr18++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2019)
+       	{
+		if (arrayStatsData[i][0] == 2019)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr19 += arrayStatsData[i][4];
 				cBCYr19++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2020)
+       	{
+		if (arrayStatsData[i][0] == 2020)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr20 += arrayStatsData[i][4];
 				cBCYr20++;
-				} 
 			} 
-		}
+		} 
+	}
 		
         if(arrayStatsData[i][1] == 25.0)
-        	{
-			if (arrayStatsData[i][0] == 2021)
+       	{
+		if (arrayStatsData[i][0] == 2021)
+		{
+			if (arrayStatsData[i][4] != -1)
 			{
-				if (arrayStatsData[i][4] != -1)
-				{
 				sumBCYr21 += arrayStatsData[i][4];
 				cBCYr21++;
-				} 
 			} 
-		}
+		} 
+	}
 			           
     }   
-	puts(" ");
+    puts(" ");
     printf("The Percent Average for British Columbia in the year 2015: %0.2lf\n", sumBCYr15/ cBCYr15);
     printf("The Percent Average for British Columbia in the year 2016: %0.2lf\n", sumBCYr16/ cBCYr16);
     printf("The Percent Average for British Columbia in the year 2017: %0.2lf\n", sumBCYr17/ cBCYr17);
@@ -782,45 +782,45 @@ int main(void)
     puts("Question 1d:"); 
 
 //AGE GROUP NATIONAL AVG
- double sumAge31NA = 0,  cAge31NA = 0, sumAge32NA = 0,  cAge32NA = 0, sumAge33NA = 0,  cAge33NA = 0;
-	for (int i = 1; i < row; i++) 
+    double sumAge31NA = 0,  cAge31NA = 0, sumAge32NA = 0,  cAge32NA = 0, sumAge33NA = 0,  cAge33NA = 0;
+    for (int i = 1; i < row; i++) 
+    {
+	if(arrayStatsData[i][2] == 31)
 	{
-        if(arrayStatsData[i][2] == 31)
-        	{
-			if(arrayStatsData[i][1] == 21.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge31NA += arrayStatsData[i][4];
-					cAge31NA++;
-				}  
-			}
+		if(arrayStatsData[i][1] == 21.0)
+		{		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumAge31NA += arrayStatsData[i][4];
+				cAge31NA++;
+			}  
 		}
+	}
 		
-		if(arrayStatsData[i][2] == 32)
-        	{
-			if(arrayStatsData[i][1] == 21.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge32NA += arrayStatsData[i][4];
-					cAge32NA++;
-				}  
-			}
-		}    
+	if(arrayStatsData[i][2] == 32)
+       	{
+		if(arrayStatsData[i][1] == 21.0)
+		{		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumAge32NA += arrayStatsData[i][4];
+				cAge32NA++;
+			}  
+		}
+	}    
 		
-		if(arrayStatsData[i][2] == 33)
-        	{
-			if(arrayStatsData[i][1] == 21.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge33NA += arrayStatsData[i][4];
-					cAge33NA++;
-				}  
-			}	
-		}	   	    
-	}	
+	if(arrayStatsData[i][2] == 33)
+       	{
+		if(arrayStatsData[i][1] == 21.0)
+		{		
+			if (arrayStatsData[i][4] != -1)
+			{
+				sumAge33NA += arrayStatsData[i][4];
+				cAge33NA++;
+			}  
+		}	
+	}
+    }	
     	
     printf("The Percent Average for National (Excluding Territories) with Age (35-49): %0.2lf\n", sumAge31NA/ cAge31NA);
     printf("The Percent Average for National (Excluding Territories) with Age (60-64): %0.2lf\n", sumAge32NA/ cAge32NA);
@@ -828,45 +828,45 @@ int main(void)
     puts(" ");
     
  //AGE GROUP QUEBEC AVG
-  double sumAge31QC = 0,  cAge31QC = 0, sumAge32QC = 0,  cAge32QC = 0, sumAge33QC = 0,  cAge33QC = 0;
-	for (int i = 1; i < row; i++) 
-	{
-        if(arrayStatsData[i][2] == 31)
-        	{
-			if(arrayStatsData[i][1] == 22.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge31QC += arrayStatsData[i][4];
-					cAge31QC++;
-				}  
-			}
-		}
+    double sumAge31QC = 0,  cAge31QC = 0, sumAge32QC = 0,  cAge32QC = 0, sumAge33QC = 0,  cAge33QC = 0;
+    for (int i = 1; i < row; i++) 
+    {
+	    if(arrayStatsData[i][2] == 31)
+	    {
+		    if(arrayStatsData[i][1] == 22.0)
+		    {		
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				sumAge31QC += arrayStatsData[i][4];
+				cAge31QC++;
+			    }  
+		    }
+	    }
 		
-		if(arrayStatsData[i][2] == 32)
-        	{
-			if(arrayStatsData[i][1] == 22.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge32QC += arrayStatsData[i][4];
-					cAge32QC++;
-				}  
-			}
-		}    
+	    if(arrayStatsData[i][2] == 32)
+	    {
+		    if(arrayStatsData[i][1] == 22.0)
+		    {		
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge32QC += arrayStatsData[i][4];
+				    cAge32QC++;
+			    }  
+		    }
+	    }    
 		
-		if(arrayStatsData[i][2] == 33)
-        	{
-			if(arrayStatsData[i][1] == 22.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge33QC += arrayStatsData[i][4];
-					cAge33QC++;
-				}  
-			}	
-		}	   	    
-	}	
+	    if(arrayStatsData[i][2] == 33)
+	    {
+		    if(arrayStatsData[i][1] == 22.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge33QC += arrayStatsData[i][4];
+				    cAge33QC++;
+			    }
+		    }
+	    }
+    }	
     	
     printf("The Percent Average for Quebec with Age (35-49): %0.2lf\n", sumAge31QC/ cAge31QC);
     printf("The Percent Average for Quebec with Age (60-64): %0.2lf\n", sumAge32QC/ cAge32QC);
@@ -874,45 +874,45 @@ int main(void)
     puts(" ");
        
  //AGE GROUP ONTARIO AVG
-  double sumAge31ON = 0,  cAge31ON = 0, sumAge32ON = 0,  cAge32ON = 0, sumAge33ON = 0,  cAge33ON = 0;
-	for (int i = 1; i < row; i++) 
-	{
-        if(arrayStatsData[i][2] == 31)
-        	{
-			if(arrayStatsData[i][1] == 23.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge31ON += arrayStatsData[i][4];
-					cAge31ON++;
-				}  
-			}
-		}
-		
-		if(arrayStatsData[i][2] == 32)
-        	{
-			if(arrayStatsData[i][1] == 23.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge32ON += arrayStatsData[i][4];
-					cAge32ON++;
-				}  
-			}
-		}    
-		
-		if(arrayStatsData[i][2] == 33)
-        	{
-			if(arrayStatsData[i][1] == 23.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge33ON += arrayStatsData[i][4];
-					cAge33ON++;
-				}  
-			}	
-		}	   	    
-	}	
+    double sumAge31ON = 0,  cAge31ON = 0, sumAge32ON = 0,  cAge32ON = 0, sumAge33ON = 0,  cAge33ON = 0;
+    for (int i = 1; i < row; i++) 
+    {
+	    if(arrayStatsData[i][2] == 31)
+	    {
+		    if(arrayStatsData[i][1] == 23.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge31ON += arrayStatsData[i][4];
+				    cAge31ON++;
+			    }
+		    }
+	    }
+	    
+	    if(arrayStatsData[i][2] == 32)
+	    {
+		    if(arrayStatsData[i][1] == 23.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge32ON += arrayStatsData[i][4];
+				    cAge32ON++;
+			    }
+		    }
+	    }
+	    
+	    if(arrayStatsData[i][2] == 33)
+	    {
+		    if(arrayStatsData[i][1] == 23.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge33ON += arrayStatsData[i][4];
+				    cAge33ON++;
+			    }
+		    }
+	    }
+    }	
     	
     printf("The Percent Average for Ontario with Age (35-49): %0.2lf\n", sumAge31ON/ cAge31ON);
     printf("The Percent Average for Ontario with Age (60-64): %0.2lf\n", sumAge32ON/ cAge32ON);
@@ -920,45 +920,45 @@ int main(void)
     puts(" ");
     
  //AGE GROUP ALBERTA AVG
-   double sumAge31AB = 0,  cAge31AB = 0, sumAge32AB = 0,  cAge32AB = 0, sumAge33AB = 0,  cAge33AB = 0;
-	for (int i = 1; i < row; i++) 
-	{
-		if(arrayStatsData[i][2] == 31)
-			{
-			if(arrayStatsData[i][1] == 24.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge31AB += arrayStatsData[i][4];
-					cAge31AB++;
-				}  
-			}
-		}
+    double sumAge31AB = 0,  cAge31AB = 0, sumAge32AB = 0,  cAge32AB = 0, sumAge33AB = 0,  cAge33AB = 0;
+    for (int i = 1; i < row; i++) 
+    {
+	    if(arrayStatsData[i][2] == 31)
+	    {
+		    if(arrayStatsData[i][1] == 24.0)
+		    {		
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				sumAge31AB += arrayStatsData[i][4];
+				cAge31AB++;
+			    }  
+		    }
+	    }
 		
-		if(arrayStatsData[i][2] == 32)
-			{
-			if(arrayStatsData[i][1] == 24.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge32AB += arrayStatsData[i][4];
-					cAge32AB++;
-				}  
-			}
-		}    
+	    if(arrayStatsData[i][2] == 32)
+	    {
+		    if(arrayStatsData[i][1] == 24.0)
+		    {		
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge32AB += arrayStatsData[i][4];
+				    cAge32AB++;
+			    }  
+		    }
+	    }    
 		
-		if(arrayStatsData[i][2] == 33)
-        	{
-			if(arrayStatsData[i][1] == 24.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge33AB += arrayStatsData[i][4];
-					cAge33AB++;
-				}  
-			}	
-		}	   	    
-	}	
+	    if(arrayStatsData[i][2] == 33)
+	    {
+		    if(arrayStatsData[i][1] == 24.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge33AB += arrayStatsData[i][4];
+				    cAge33AB++;
+			    }
+		    }
+	    }
+    }	
     	
     printf("The Percent Average for Alberta with Age (35-49): %0.2lf\n", sumAge31AB/ cAge31AB);
     printf("The Percent Average for Alberta with Age (60-64): %0.2lf\n", sumAge32AB/ cAge32AB);
@@ -966,45 +966,45 @@ int main(void)
     puts(" ");
     
 //AGE GROUP BRITISH COLUMBIA AVG
-   double sumAge31BC = 0,  cAge31BC = 0, sumAge32BC = 0,  cAge32BC = 0, sumAge33BC = 0,  cAge33BC = 0;
-	for (int i = 1; i < row; i++) 
-	{
-        if(arrayStatsData[i][2] == 31)
-        {
-		if(arrayStatsData[i][1] == 25.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge31BC += arrayStatsData[i][4];
-					cAge31BC++;
-				}  
-			}
-		}
+    double sumAge31BC = 0,  cAge31BC = 0, sumAge32BC = 0,  cAge32BC = 0, sumAge33BC = 0,  cAge33BC = 0;
+    for (int i = 1; i < row; i++) 
+    {
+	    if(arrayStatsData[i][2] == 31)
+	    {
+		    if(arrayStatsData[i][1] == 25.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge31BC += arrayStatsData[i][4];
+				    cAge31BC++;
+			    }
+		    }
+	    }
 		
-		if(arrayStatsData[i][2] == 32)
-        	{
-			if(arrayStatsData[i][1] == 25.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge32BC += arrayStatsData[i][4];
-					cAge32BC++;
-				}  
-			}
-		}    
+	    if(arrayStatsData[i][2] == 32)
+	    {
+		    if(arrayStatsData[i][1] == 25.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge32BC += arrayStatsData[i][4];
+				    cAge32BC++;
+			    }
+		    }
+	    }    
 		
-		if(arrayStatsData[i][2] == 33)
-        	{
-			if(arrayStatsData[i][1] == 25.0)
-			{		
-				if (arrayStatsData[i][4] != -1)
-				{
-					sumAge33BC += arrayStatsData[i][4];
-					cAge33BC++;
-				}  
-			}	
-		}	   	    
-	}	
+	    if(arrayStatsData[i][2] == 33)
+	    {
+		    if(arrayStatsData[i][1] == 25.0)
+		    {
+			    if (arrayStatsData[i][4] != -1)
+			    {
+				    sumAge33BC += arrayStatsData[i][4];
+				    cAge33BC++;
+			    }
+		    }
+	    }
+    }	
     	
     printf("The Percent Average for British Columbia with Age (35-49): %0.2lf\n", sumAge31BC/ cAge31BC);
     printf("The Percent Average for British Columbia with Age (60-64): %0.2lf\n", sumAge32BC/ cAge32BC);
