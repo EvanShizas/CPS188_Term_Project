@@ -244,7 +244,7 @@ int main(void)
     double sumBC = 0, cBC = 0;
     for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][1] == 25.0)
+        if(arrayStatsData[i][0] == 2015)
         {		
 			if (arrayStatsData[i][4] != -1)
 			{
@@ -252,14 +252,13 @@ int main(void)
 				sumBC += arrayStatsData[i][4];
 				cBC++;
 			} 
-
         }            
     }    		
     printf("The Percent Average for British Columbia: %0.2lf\n", sumBC/ cBC);
     puts("");
     //printf("%0.0lf", cBC);
     
-    //Printing National AVG (Canada Excluding Territores)    
+//Printing National AVG (Canada Excluding Territores)    
 	puts("Question 1b: "); 	
     double sumNA = 0, cNA = 0;
     for (int i = 1; i < row; i++) 
@@ -281,8 +280,8 @@ int main(void)
 //CANADA National AVG 
     puts("Question 1c: "); 	
     double sumNAYr15 = 0, cNAYr15 = 0,sumNAYr16 = 0, cNAYr16 = 0, sumNAYr17 = 0, cNAYr17 = 0,
-		   sumNAYr18 = 0, cNAYr18 = 0, sumNAYr19 = 0, cNAYr19 = 0, sumNAYr20 = 0, cNAYr20 = 0,
-		   sumNAYr21 = 0, cNAYr21 = 0;
+		         sumNAYr18 = 0, cNAYr18 = 0, sumNAYr19 = 0, cNAYr19 = 0, sumNAYr20 = 0, cNAYr20 = 0,
+		         sumNAYr21 = 0, cNAYr21 = 0;
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 21.0)
@@ -367,23 +366,22 @@ int main(void)
 				cNAYr21++;
 				} 
 			} 
-		}
-			           
+		}           
     }   
 	
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2015: %0.2lf\n", sumNAYr15/ cNAYr15);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2016: %0.2lf\n", sumNAYr16/ cNAYr16);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2017: %0.2lf\n", sumNAYr17/ cNAYr17);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2018: %0.2lf\n", sumNAYr18/ cNAYr18);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2019: %0.2lf\n", sumNAYr19/ cNAYr19);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2020: %0.2lf\n", sumNAYr20/ cNAYr20);
-    printf("The Percent Average for National(Canada Excluding Territores)in the year 2021: %0.2lf\n", sumNAYr21/ cNAYr21);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2015: %0.2lf\n", sumNAYr15/ cNAYr15);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2016: %0.2lf\n", sumNAYr16/ cNAYr16);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2017: %0.2lf\n", sumNAYr17/ cNAYr17);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2018: %0.2lf\n", sumNAYr18/ cNAYr18);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2019: %0.2lf\n", sumNAYr19/ cNAYr19);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2020: %0.2lf\n", sumNAYr20/ cNAYr20);
+    printf("The Percent Average for National (Canada Excluding Territores)in the year 2021: %0.2lf\n", sumNAYr21/ cNAYr21);
     
 // Annual Quebec AVG
 
     double sumQCYr15 = 0, cQCYr15 = 0,sumQCYr16 = 0, cQCYr16 = 0, sumQCYr17 = 0, cQCYr17 = 0,
-		   sumQCYr18 = 0, cQCYr18 = 0, sumQCYr19 = 0, cQCYr19 = 0, sumQCYr20 = 0, cQCYr20 = 0,
-		   sumQCYr21 = 0, cQCYr21 = 0;
+		         sumQCYr18 = 0, cQCYr18 = 0, sumQCYr19 = 0, cQCYr19 = 0, sumQCYr20 = 0, cQCYr20 = 0,
+		         sumQCYr21 = 0, cQCYr21 = 0;
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 22.0)
@@ -482,8 +480,8 @@ int main(void)
     
 //ONTARIO ANNUAL AVG
     double sumONYr15 = 0, cONYr15 = 0,sumONYr16 = 0, cONYr16 = 0, sumONYr17 = 0, cONYr17 = 0,
-		   sumONYr18 = 0, cONYr18 = 0, sumONYr19 = 0, cONYr19 = 0, sumONYr20 = 0, cONYr20 = 0,
-		   sumONYr21 = 0, cONYr21 = 0;
+		         sumONYr18 = 0, cONYr18 = 0, sumONYr19 = 0, cONYr19 = 0, sumONYr20 = 0, cONYr20 = 0,
+		         sumONYr21 = 0, cONYr21 = 0;
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 23.0)
@@ -582,8 +580,8 @@ int main(void)
     
 //ALBERTA ANNUAL AVG
     double sumABYr15 = 0, cABYr15 = 0,sumABYr16 = 0, cABYr16 = 0, sumABYr17 = 0, cABYr17 = 0,
-		   sumABYr18 = 0, cABYr18 = 0, sumABYr19 = 0, cABYr19 = 0, sumABYr20 = 0, cABYr20 = 0,
-		   sumABYr21 = 0, cABYr21 = 0;
+		         sumABYr18 = 0, cABYr18 = 0, sumABYr19 = 0, cABYr19 = 0, sumABYr20 = 0, cABYr20 = 0,
+		         sumABYr21 = 0, cABYr21 = 0;
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 24.0)
@@ -682,8 +680,8 @@ int main(void)
  
  //BRITISH COLUMBIA ANNUAL PERCENTAGE
     double sumBCYr15 = 0, cBCYr15 = 0,sumBCYr16 = 0, cBCYr16 = 0, sumBCYr17 = 0, cBCYr17 = 0,
-		   sumBCYr18 = 0, cBCYr18 = 0, sumBCYr19 = 0, cBCYr19 = 0, sumBCYr20 = 0, cBCYr20 = 0,
-		   sumBCYr21 = 0, cBCYr21 = 0;
+		         sumBCYr18 = 0, cBCYr18 = 0, sumBCYr19 = 0, cBCYr19 = 0, sumBCYr20 = 0, cBCYr20 = 0,
+		         sumBCYr21 = 0, cBCYr21 = 0;
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 25.0)
@@ -1082,4 +1080,3 @@ int main(void)
  * 3 -> Gender (41.0 - 42.0)
  * 4 -> Percent of Population (%)
  */
-
