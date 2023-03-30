@@ -221,7 +221,7 @@ int main(void)
 			}  
 	        }        
     	}    		
-    	printf("The Percent Average for Ontario : %0.2lf\n", sumON/ cON);
+    	printf("The Percent Average for Ontario: %0.2lf\n", sumON/ cON);
     //printf("%0.0lf", cON);
     
 //Printing Alberta AVG
