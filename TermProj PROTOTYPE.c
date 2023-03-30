@@ -205,7 +205,7 @@ int main(void)
 			}
         	}    
     	}    		
-    printf("The Percent Average for Quebec: %0.2lf\n", sumQC/ cQC);
+    	printf("The Percent Average for Quebec: %0.2lf\n", sumQC/ cQC);
     //printf("%0.0lf", cQC);
 
 //Printing Ontario AVG
