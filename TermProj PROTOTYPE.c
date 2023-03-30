@@ -196,14 +196,14 @@ int main(void)
 	double sumQC = 0,  cQC = 0;
 	for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][1] == 22.0)
-        {		   
+	        if(arrayStatsData[i][1] == 22.0)
+        	{		   
 			 if (arrayStatsData[i][4] != -1)
 			{
 				sumQC += arrayStatsData[i][4];
 				cQC++;
 			}
-        }    
+        	}    
     }    		
     printf("The Percent Average for Quebec: %0.2lf\n", sumQC/ cQC);
     //printf("%0.0lf", cQC);
@@ -212,14 +212,14 @@ int main(void)
 	double sumON = 0,  cON = 0;
 	for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][1] == 23.0)
-        {		
+	        if(arrayStatsData[i][1] == 23.0)
+        	{		
 			if (arrayStatsData[i][4] != -1)
 			{
 				sumON += arrayStatsData[i][4];
 				cON++;
 			}  
-        }        
+	        }        
     }    		
     printf("The Percent Average for Ontario : %0.2lf\n", sumON/ cON);
     //printf("%0.0lf", cON);
@@ -228,14 +228,14 @@ int main(void)
 	double sumAB = 0, cAB = 0;
     for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][1] == 24.0)
-        {		
+        	if(arrayStatsData[i][1] == 24.0)
+        	{		
 			if (arrayStatsData[i][4] != -1)
 			{
 				sumAB += arrayStatsData[i][4];
 				cAB++;
 			} 
-        }            
+        	}            
     }    		
     printf("The Percent Average for Alberta: %0.2lf\n", sumAB/ cAB);
     //printf("%0.0lf", cAB);	
@@ -244,15 +244,15 @@ int main(void)
     double sumBC = 0, cBC = 0;
     for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][0] == 2015)
-        {		
+        	if(arrayStatsData[i][0] == 2015)
+        	{		
 			if (arrayStatsData[i][4] != -1)
 			{
 				//printf("%lf", arrayStatsData[i][4]);
 				sumBC += arrayStatsData[i][4];
 				cBC++;
 			} 
-        }            
+        	}            
     }    		
     printf("The Percent Average for British Columbia: %0.2lf\n", sumBC/ cBC);
     puts("");
@@ -263,14 +263,14 @@ int main(void)
     double sumNA = 0, cNA = 0;
     for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][1] == 21.0)
-        {		
+        	if(arrayStatsData[i][1] == 21.0)
+        	{		
 			if (arrayStatsData[i][4] != -1)
 			{
 				sumNA += arrayStatsData[i][4];
 				cNA++;
 			} 
-        }            
+        	}            
     }   
 	
     printf("The Percent Average for National (Canada Excluding Territores): %0.2lf\n", sumNA/ cNA);
@@ -283,9 +283,9 @@ int main(void)
 		         sumNAYr18 = 0, cNAYr18 = 0, sumNAYr19 = 0, cNAYr19 = 0, sumNAYr20 = 0, cNAYr20 = 0,
 		         sumNAYr21 = 0, cNAYr21 = 0;
     for (int i = 1; i < row; i++) 
-	{
+    {
         if(arrayStatsData[i][1] == 21.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2015)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -297,7 +297,7 @@ int main(void)
 		}
 		
 		if(arrayStatsData[i][1] == 21.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2016)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -309,7 +309,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 21.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2017)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -321,7 +321,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 21.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2018)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -333,7 +333,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 21.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2019)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -345,7 +345,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 21.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2020)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -357,7 +357,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 21.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2021)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -385,7 +385,7 @@ int main(void)
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 22.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2015)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -397,7 +397,7 @@ int main(void)
 		}
 		
 		if(arrayStatsData[i][1] == 22.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2016)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -409,7 +409,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 22.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2017)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -421,7 +421,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 22.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2018)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -433,7 +433,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 22.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2019)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -445,7 +445,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 22.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2020)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -457,7 +457,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 22.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2021)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -485,7 +485,7 @@ int main(void)
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 23.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2015)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -497,7 +497,7 @@ int main(void)
 		}
 		
 		if(arrayStatsData[i][1] == 23.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2016)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -509,7 +509,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 23.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2017)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -521,7 +521,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 23.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2018)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -533,7 +533,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 23.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2019)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -545,7 +545,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 23.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2020)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -557,7 +557,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 23.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2021)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -585,7 +585,7 @@ int main(void)
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 24.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2015)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -597,7 +597,7 @@ int main(void)
 		}
 		
 		if(arrayStatsData[i][1] == 24.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2016)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -609,7 +609,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 24.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2017)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -621,7 +621,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 24.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2018)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -633,7 +633,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 24.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2019)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -645,7 +645,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 24.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2020)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -657,7 +657,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 24.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2021)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -685,7 +685,7 @@ int main(void)
     for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2015)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -697,7 +697,7 @@ int main(void)
 		}
 		
 		if(arrayStatsData[i][1] == 25.0)
-        {
+	        {
 			if (arrayStatsData[i][0] == 2016)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -709,7 +709,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2017)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -721,7 +721,7 @@ int main(void)
 		}
 
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2018)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -733,7 +733,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2019)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -745,7 +745,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2020)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -757,7 +757,7 @@ int main(void)
 		}
 		
         if(arrayStatsData[i][1] == 25.0)
-        {
+        	{
 			if (arrayStatsData[i][0] == 2021)
 			{
 				if (arrayStatsData[i][4] != -1)
@@ -786,7 +786,7 @@ int main(void)
 	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][2] == 31)
-        {
+        	{
 			if(arrayStatsData[i][1] == 21.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -796,8 +796,9 @@ int main(void)
 				}  
 			}
 		}
+		
 		if(arrayStatsData[i][2] == 32)
-        {
+        	{
 			if(arrayStatsData[i][1] == 21.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -807,8 +808,9 @@ int main(void)
 				}  
 			}
 		}    
+		
 		if(arrayStatsData[i][2] == 33)
-        {
+        	{
 			if(arrayStatsData[i][1] == 21.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -830,7 +832,7 @@ int main(void)
 	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][2] == 31)
-        {
+        	{
 			if(arrayStatsData[i][1] == 22.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -840,8 +842,9 @@ int main(void)
 				}  
 			}
 		}
+		
 		if(arrayStatsData[i][2] == 32)
-        {
+        	{
 			if(arrayStatsData[i][1] == 22.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -851,8 +854,9 @@ int main(void)
 				}  
 			}
 		}    
+		
 		if(arrayStatsData[i][2] == 33)
-        {
+        	{
 			if(arrayStatsData[i][1] == 22.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -874,7 +878,7 @@ int main(void)
 	for (int i = 1; i < row; i++) 
 	{
         if(arrayStatsData[i][2] == 31)
-        {
+        	{
 			if(arrayStatsData[i][1] == 23.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -884,8 +888,9 @@ int main(void)
 				}  
 			}
 		}
+		
 		if(arrayStatsData[i][2] == 32)
-        {
+        	{
 			if(arrayStatsData[i][1] == 23.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -895,8 +900,9 @@ int main(void)
 				}  
 			}
 		}    
+		
 		if(arrayStatsData[i][2] == 33)
-        {
+        	{
 			if(arrayStatsData[i][1] == 23.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -917,8 +923,8 @@ int main(void)
    double sumAge31AB = 0,  cAge31AB = 0, sumAge32AB = 0,  cAge32AB = 0, sumAge33AB = 0,  cAge33AB = 0;
 	for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][2] == 31)
-        {
+		if(arrayStatsData[i][2] == 31)
+			{
 			if(arrayStatsData[i][1] == 24.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -928,8 +934,9 @@ int main(void)
 				}  
 			}
 		}
+		
 		if(arrayStatsData[i][2] == 32)
-        {
+			{
 			if(arrayStatsData[i][1] == 24.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -939,8 +946,9 @@ int main(void)
 				}  
 			}
 		}    
+		
 		if(arrayStatsData[i][2] == 33)
-        {
+        	{
 			if(arrayStatsData[i][1] == 24.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -963,7 +971,7 @@ int main(void)
 	{
         if(arrayStatsData[i][2] == 31)
         {
-			if(arrayStatsData[i][1] == 25.0)
+		if(arrayStatsData[i][1] == 25.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
 				{
@@ -972,8 +980,9 @@ int main(void)
 				}  
 			}
 		}
+		
 		if(arrayStatsData[i][2] == 32)
-        {
+        	{
 			if(arrayStatsData[i][1] == 25.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
@@ -983,8 +992,9 @@ int main(void)
 				}  
 			}
 		}    
+		
 		if(arrayStatsData[i][2] == 33)
-        {
+        	{
 			if(arrayStatsData[i][1] == 25.0)
 			{		
 				if (arrayStatsData[i][4] != -1)
