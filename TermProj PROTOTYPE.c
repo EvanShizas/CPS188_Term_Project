@@ -244,7 +244,7 @@ int main(void)
     double sumBC = 0, cBC = 0;
     for (int i = 1; i < row; i++) 
 	{
-        if(arrayStatsData[i][0] == 2015)
+        if(arrayStatsData[i][1] == 25.0)
         {		
 			if (arrayStatsData[i][4] != -1)
 			{
@@ -1082,3 +1082,4 @@ int main(void)
  * 3 -> Gender (41.0 - 42.0)
  * 4 -> Percent of Population (%)
  */
+
