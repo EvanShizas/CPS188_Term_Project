@@ -190,7 +190,7 @@ int main(void)
 		
 	}
 
-//CALCULATION FOR PROVINCIAL AVG
+//CALCULATION FOR PROVINCIAL AVG - By Jonathan 
 	puts("QUESTION 1a:");
 //Printing Quebec AVG		 
 	double sumQC = 0,  cQC = 0;
@@ -1002,6 +1002,8 @@ int main(void)
     printf("The Percent Average for British Columbia with Age (60-64): %0.2lf\n", sumAge32BC/ cAge32BC);
     printf("The Percent Average for British Columbia with Age (65+): %0.2lf\n", sumAge33BC/ cAge33BC);
     puts(" ");
+
+//End of Jonathan's Work
     
  //TALHA PUT YOUR CODE HERE FOR QUESTION 2
 
