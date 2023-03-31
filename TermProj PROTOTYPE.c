@@ -1026,12 +1026,12 @@ int main(void)
 	fprintf(writeAnnualAB, "2015, %0.2lf \n2016, %0.2lf\n2017, %0.2lf\n2018, %0.2lf\n2019, %0.2lf\n2020, %0.2lf\n2021, %0.2lf", 
 		sumABYr15/ cABYr15, sumABYr16/ cABYr16, sumABYr17/ cABYr17, sumABYr18/ cABYr18, sumABYr19/ cABYr19, sumABYr20/ cABYr20, sumABYr21/ cABYr21);
 		fclose(writeAnnualAB);
-		FILE *writeAnnualBC = fopen("Q.5 British Columbia.txt", "w");		
+		FILE *writeAnnualBC = fopen("Q.5 British Columbia AVG.txt", "w");		
 	fprintf(writeAnnualBC, "2015, %0.2lf \n2016, %0.2lf\n2017, %0.2lf\n2018, %0.2lf\n2019, %0.2lf\n2020, %0.2lf\n2021, %0.2lf", 
 		sumBCYr15/ cBCYr15, sumBCYr16/ cBCYr16, sumBCYr17/ cBCYr17, sumBCYr18/ cBCYr18, sumBCYr19/ cBCYr19, sumBCYr20/ cBCYr20, sumBCYr21/ cBCYr21);	
 		fclose(writeAnnualBC);
 	//Question 6
-	FILE *writeAge = fopen("Q.6 Canada Age Group file.txt", "w");		
+	FILE *writeAge = fopen("Q.6 Canada Age Group AVG.txt", "w");		
 	fprintf(writeAge, "0, 35-49, %0.2lf\n1, 50-64, %0.2lf\n2, 65+, %0.2lf", sumAge31NA/ cAge31NA, sumAge32NA/ cAge32NA, sumAge33NA/ cAge33NA);
 	fclose(writeAnnualBC);
 
