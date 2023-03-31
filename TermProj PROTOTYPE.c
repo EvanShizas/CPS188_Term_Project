@@ -1035,7 +1035,7 @@ int main(void)
 		sumBCYr15/ cBCYr15, sumBCYr16/ cBCYr16, sumBCYr17/ cBCYr17, sumBCYr18/ cBCYr18, sumBCYr19/ cBCYr19, sumBCYr20/ cBCYr20, sumBCYr21/ cBCYr21);	
 	fclose(writeAnnualBC);
 	
-	//Question 6
+//Question 6
 	FILE *writeAge = fopen("Q.6 Canada Age Group AVG.txt", "w");		
 	fprintf(writeAge, "0, 35-49, %0.2lf\n1, 50-64, %0.2lf\n2, 65+, %0.2lf", sumAge31NA/ cAge31NA, sumAge32NA/ cAge32NA, sumAge33NA/ cAge33NA);
 	fclose(writeAnnualBC);
