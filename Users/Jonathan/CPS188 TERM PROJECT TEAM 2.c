@@ -1007,6 +1007,27 @@ int main(void)
     	printf("The Percent Average for British Columbia with Age (60-64): %0.2lf\n", sumAge32BC/ cAge32BC);
     	printf("The Percent Average for British Columbia with Age (65+): %0.2lf\n", sumAge33BC/ cAge33BC);
     	puts(" ");
+    	
+ //For GRAPHING by Jonathan   	
+    	FILE *write = fopen("Graphing File.txt", "w");		
+    	//Question 5
+    	fprintf(write, "Annual AVG for Canada (2015, 2016, 2017, 2018, 2019, 2021, 2022), %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf\n", 
+		sumNAYr15/ cNAYr15, sumNAYr16/ cNAYr16, sumNAYr17/ cNAYr17, sumNAYr18/ cNAYr18, sumNAYr19/ cNAYr19, sumNAYr20/ cNAYr20, sumNAYr21/ cNAYr21);			
+    	fprintf(write, "Annual AVG for Quebec (2015, 2016, 2017, 2018, 2019, 2021, 2022), %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf\n", 
+		sumQCYr15/ cQCYr15, sumQCYr16/ cQCYr16, sumQCYr17/ cQCYr17, sumQCYr18/ cQCYr18, sumQCYr19/ cQCYr19, sumQCYr20/ cQCYr20, sumQCYr21/ cQCYr21);
+	fprintf(write, "Annual AVG for Ontario (2015, 2016, 2017, 2018, 2019, 2021, 2022), %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf\n", 
+		sumONYr15/ cONYr15, sumONYr16/ cONYr16, sumONYr17/ cONYr17, sumONYr18/ cONYr18, sumONYr19/ cONYr19, sumONYr20/ cONYr20, sumONYr21/ cONYr21);
+	fprintf(write, "Annual AVG for Alberta (2015, 2016, 2017, 2018, 2019, 2021, 2022), %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf\n", 
+		sumABYr15/ cABYr15, sumABYr16/ cABYr16, sumABYr17/ cABYr17, sumABYr18/ cABYr18, sumABYr19/ cABYr19, sumABYr20/ cABYr20, sumABYr21/ cABYr21);
+	fprintf(write, "Annual AVG for British Columbia (2015, 2016, 2017, 2018, 2019, 2021, 2022), %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf, %0.2lf\n", 
+		sumBCYr15/ cBCYr15, sumBCYr16/ cBCYr16, sumBCYr17/ cBCYr17, sumBCYr18/ cBCYr18, sumBCYr19/ cBCYr19, sumBCYr20/ cBCYr20, sumBCYr21/ cBCYr21);	
+	//Question 6
+	fprintf(write, "Age Group AVG for Canada (35-49, 60-64, 65+), %0.2lf, %0.2lf, %0.2lf\n", sumAge31NA/ cAge31NA, sumAge32NA/ cAge32NA, sumAge33NA/ cAge33NA);
+		/*fprintf(write, "Age Group AVG for Quebec (35-49, 60-64, 65+), %0.2lf, %0.2lf, %0.2lf\n", sumAge31QC/ cAge31QC, sumAge32QC/ cAge32QC, sumAge33QC/ cAge33QC);
+		fprintf(write, "Age Group AVG for Ontario (35-49, 60-64, 65+), %0.2lf, %0.2lf, %0.2lf\n", sumAge31ON/ cAge31ON, sumAge32ON/ cAge32ON, sumAge33ON/ cAge33ON);
+		fprintf(write, "Age Group AVG for Alberta (35-49, 60-64, 65+), %0.2lf, %0.2lf, %0.2lf\n", sumAge31AB/ cAge31AB, sumAge32AB/ cAge32AB, sumAge33AB/ cAge33AB);
+		fprintf(write, "Age Group AVG for British Columbia (35-49, 60-64, 65+), %0.2lf, %0.2lf, %0.2lf\n", sumAge31BC/ cAge31BC, sumAge32BC/ cAge32BC, sumAge33BC/ cAge33BC);	*/
+
 
 //End of Jonathan's Work
     
