@@ -315,7 +315,7 @@ void dataWrite(double avgYearData[LOCATIONS][END_YEAR-START_YEAR+1], double avgA
 	
 	fclose(write);
 	
-	printf("Success! All calculations have been performed and saved onto \"Graphing File.txt\" located\n         in the same directory as the program!\n");
+	printf("Success! All calculations have been performed and saved onto \n6 different files with question number followed by province as label\n ");
 }
 
 //Gives designated value to a specific string statement...
