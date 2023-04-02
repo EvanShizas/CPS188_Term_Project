@@ -433,7 +433,7 @@ int main(void)
 	
 	digitLocation = 21; //Canada (excluding territories)
 	avgData[LOCATIONS-1] = locationAverage(row, col, digitLocation, arrayStatsData);
-	printf("National Average (Canada Excluding Territores): %0.2lf%%\n", avgData[LOCATIONS-1]);
+	printf("National Average (Canada Excluding Territories): %0.2lf%%\n", avgData[LOCATIONS-1]);
 	
 	puts("\nQuestion 1c: ----------------------------------------------------------------------\n"); //Question 1c:
 	
