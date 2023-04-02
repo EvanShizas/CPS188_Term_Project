@@ -249,29 +249,69 @@ char *locationStringFill(int digitLocation) {
 
 //Writes all calculated data onto a file for GNUPlot (Questions 5 and 6)...
 void dataWrite(double avgYearData[LOCATIONS][END_YEAR-START_YEAR+1], double avgAgeData[LOCATIONS][AGE_GROUPS]) {
-	int locationTitle = -1;
-	FILE *write = fopen("Graphing File.txt", "w");
+	int digitYear = START_YEAR;
+	char *ageGroup;
+	FILE *write;
 	
 	//Question 5:
 	for (int i = 0; i < LOCATIONS; i++) {
-		fprintf(write, "Annual AVG for %s (2015, 2016, 2017, 2018, 2019, 2021, 2022)", locationStringFill(locationTitle));
+		digitYear = START_YEAR;
 		
-		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
-			fprintf(write, ", %0.2lf", avgYearData[i][j]);
+		switch (i) {
+			case 0:
+				write = fopen("Q.5 Canada AVG.txt", "w");
+				break;
+			case 1:
+				write = fopen("Q.5 Quebec AVG.txt", "w");
+				break;
+			case 2:
+				write = fopen("Q.5 Ontario AVG.txt", "w");
+				break;
+			case 3:
+				write = fopen("Q.5 Alberta AVG.txt", "w");
+				break;
+			case 4:
+				write = fopen("Q.5 British Columbia AVG.txt", "w");
+				break;
+			default:
+				write = fopen("extra_data.txt", "w");
+				break;
 		}
 		
-		fprintf(write, "\n");
-		locationTitle++;
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+			fprintf(write, "%d, %0.2lf", digitYear, avgYearData[i][j]);
+			
+			if (j+1 != END_YEAR-START_YEAR+1)
+				fprintf(write, "\n");
+			
+			digitYear++;
+		}
 	}
 	
 	//Question 6:
-	fprintf(write, "Age Group AVG for Canada (35-49, 60-64, 65+)");
-	
+	write = fopen("Q.6 Canada Age Group AVG.txt", "w");
+		
 	for (int i = 0; i < AGE_GROUPS; i++) {
-		fprintf(write, ", %0.2lf", avgAgeData[0][i]);
+		switch (i) {
+			case 0:
+				ageGroup = "35-49";
+				break;
+			case 1:
+				ageGroup = "50-64"; 
+				break;
+			case 2:
+				ageGroup = "65+";
+				break;
+			default:
+				ageGroup = "#####";
+				break;
+		}
+		
+		fprintf(write, "%d, %s, %0.2lf", i, ageGroup, avgAgeData[0][i]);
+		
+		if (i+1 != AGE_GROUPS)
+				fprintf(write, "\n");
 	}
-	
-	fprintf(write, "\n");
 	
 	fclose(write);
 	
@@ -533,8 +573,9 @@ int main(void)
 			printf("%s is below the national average!\n", locationStringFill(i));
 		}
 		
-		else
-			printf("Error: Something went wrong with the operation(s)!\n");
+		else {
+			printf("%s is equal to the national average!\n", locationStringFill(i));
+		}
 	}
 	
 	puts("\nQuestion 4: ----------------------------------------------------------------------\n"); //Question 4:
