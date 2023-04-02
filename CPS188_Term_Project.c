@@ -23,7 +23,62 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  * 
+ * Important Details:
  * 
+ * For any blank entries in the CSV file, an '@' symbol is used to denote it as empty; 
+ * this will be substituted with a '-1' value in arrayStatsData[][]. All data 
+ * for the questions will be retrieved from arrayStatsData[][] variable to
+ * simplify casting double values. String data will be given specific 
+ * designation digits which will be run through switch-case statements in 
+ * order to match the original string to the data.
+ * 
+ * The following information cover the digit designations for all string statements:
+ * 
+ * 21.0 -> "Canada (excluding territories)"
+ * 22.0 -> "Quebec"
+ * 23.0 -> "Ontario"
+ * 24.0 -> "Alberta"
+ * 25.0 -> "British Columbia"
+ * 
+ * 31.0 -> "35 to 49 years"
+ * 32.0 -> "50 to 64 years"
+ * 33.0 -> "65 years and over"
+ * 
+ * 41.0 -> "Males"
+ * 42.0 -> "Females"
+ * 
+ * The first digit represents the column in which the digit should be located in
+ * in arrayStatsData[][], with the second digit being the differentiator between 
+ * the possible string statements for that column.
+ * 
+ * The columns are organized as follows:
+ * 
+ * 0 -> Reference Year (2015 - 2021)
+ * 1 -> Location (21.0 - 25.0)
+ * 2 -> Age Group (31.0 - 33.0)
+ * 3 -> Gender (41.0 - 42.0)
+ * 4 -> Percent of Population (%)
+ * 
+ * The following information is about the storage behaviour of the constructed arrays:
+ * 
+ * arrayStatsData[row][col] -> {Year, Location, Age Group, Sex, (%) Value}
+ * avgData[LOCATIONS] -> {Quebec (%), Ontario (%), Alberta (%), British Columbia (%), Canada (%)}
+ * 
+ * avgYearData[LOCATIONS][END_YEAR-START_YEAR]--
+ * [0. Canada] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [1. Quebec] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [2. Ontario] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [3. Alberta] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [4. British Columbia] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * 
+ * avgAgeData[LOCATIONS][AGE_GROUPS]--
+ * [0. Canada] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [1. Quebec] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [2. Ontario] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [3. Alberta] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [4. British Columbia] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * 
+ * NOTE: This important details section can be referred to at both the beginning and end of the program!
  */
 
 #include <stdio.h>
@@ -37,6 +92,18 @@
 #define COLUMN_SIZE 5
 #define START_YEAR 2015
 #define END_YEAR 2021
+#define LOCATIONS 5
+#define AGE_GROUPS 3
+
+void programHeader() {
+	puts("Term Project: Winter 2023");
+	puts("Course: CPS188");
+	puts("Section: 12");
+	puts("Instructor: Dr. Sadaf Mustafiz");
+	puts("TA: Reginald McLean");
+	puts("\nBy: Fergus Chui, Talha Khalid, Jonathan Ly, Evangelos Shizas");
+	puts("");
+}
 
 //Finds the number of data entry rows
 int dataArrayInit() {
@@ -59,6 +126,15 @@ int dataArrayInit() {
 	fclose(rowCheck);
 	
 	return rowCount;
+}
+
+//Sets array values to "empty"...
+void arrayReset(double percentData[LOCATIONS][END_YEAR-START_YEAR+1]) {
+	for (int i = 0; i < LOCATIONS; i++) {
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+			percentData[i][j] = -1;
+		}
+	}
 }
 
 //Removes "junk" characters from arrays
@@ -92,8 +168,8 @@ void arrayCharClean(int row, char dataArray[row][MAX_CHAR]) {
 
 //Collects cell entries for each column needed
 void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][MAX_CHAR]) {
-    int colCellDefault = colCell, indexCellDefault = indexCell, count = 0;
-    char *token, lineBuffer[BUFF_MAX];
+	int colCellDefault = colCell, indexCellDefault = indexCell, count = 0;
+	char *token, lineBuffer[BUFF_MAX];
 	FILE *input = fopen("statscan_diabetes.csv", "r"); //Reads each data row of the CSV file and stores the specified column in the array...
 	
 	while (fgets(lineBuffer, BUFF_MAX, input) != NULL) {
@@ -112,10 +188,94 @@ void dataArrayCollect(int row, int colCell, int indexCell, char dataArray[row][M
 			token = strtok(NULL, ",");
 		}
 	}
-    
-    fclose(input);
-    
-    arrayCharClean(row, dataArray);
+	
+	fclose(input);
+	
+	arrayCharClean(row, dataArray);
+}
+
+//Gives a specific location name based on designated value given...
+char *locationStringFill(int digitLocation) {
+	char *selectName;
+	
+	switch (digitLocation) {
+		case -1:
+			selectName = "Canada";
+			break;
+		
+		case 0:
+			selectName = "Quebec";
+			break;
+			
+		case 1:
+			selectName = "Ontario";
+			break;
+		
+		case 2:
+			selectName = "Alberta";
+			break;
+		
+		case 3:
+			selectName = "British Columbia";
+			break;
+		
+		case 21:
+			selectName = "National Average (excluding Territories)";
+			break;
+			
+		case 22:
+			selectName = "Quebec Average";
+			break;
+			
+		case 23:
+			selectName = "Ontario Average";
+			break;
+			
+		case 24:
+			selectName = "Alberta Average";
+			break;
+			
+		case 25:
+			selectName = "British Columbia Average";
+			break;
+			
+		default:
+			selectName = "#######";
+			break;
+	}
+	
+	return selectName;
+}
+
+//Writes all calculated data onto a file for GNUPlot (Questions 5 and 6)...
+void dataWrite(double avgYearData[LOCATIONS][END_YEAR-START_YEAR+1], double avgAgeData[LOCATIONS][AGE_GROUPS]) {
+	int locationTitle = -1;
+	FILE *write = fopen("Graphing File.txt", "w");
+	
+	//Question 5:
+	for (int i = 0; i < LOCATIONS; i++) {
+		fprintf(write, "Annual AVG for %s (2015, 2016, 2017, 2018, 2019, 2021, 2022)", locationStringFill(locationTitle));
+		
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+			fprintf(write, ", %0.2lf", avgYearData[i][j]);
+		}
+		
+		fprintf(write, "\n");
+		locationTitle++;
+	}
+	
+	//Question 6:
+	fprintf(write, "Age Group AVG for Canada (35-49, 60-64, 65+)");
+	
+	for (int i = 0; i < AGE_GROUPS; i++) {
+		fprintf(write, ", %0.2lf", avgAgeData[0][i]);
+	}
+	
+	fprintf(write, "\n");
+	
+	fclose(write);
+	
+	printf("Success! All calculations have been performed and saved onto \"Graphing File.txt\" located\n         in the same directory as the program!\n");
 }
 
 //Gives designated value to a specific string statement...
@@ -170,7 +330,7 @@ double genderCondition(int row, int i, char dataArray[row][MAX_CHAR]) {
 }
 
 //Calculates provincial averages for Questions 1a) & 1b)...
-double provinceAverage(int row, int col, int digitLocation, double data[row][col]) {
+double locationAverage(int row, int col, int digitLocation, double data[row][col]) {
 	double sum = 0, count = 0;
 	
 	for (int i = 1; i < row; i++) {
@@ -223,17 +383,15 @@ double ageGroupAverages(int row, int col, double *countPtr, int digitLocation, i
 
 int main(void)
 {
-	int col = COLUMN_SIZE, row = dataArrayInit(), digitLocation, digitAgeGroup;
-	double arrayStatsData[row][col], avgStatsData[8][END_YEAR-START_YEAR+1], sum = 0, count = 0, *countPtr = &count,
-		avgNAYr15, avgNAYr16, avgNAYr17, avgNAYr18, avgNAYr19, avgNAYr20, avgNAYr21,
-		avgQCYr15, avgQCYr16, avgQCYr17, avgQCYr18, avgQCYr19, avgQCYr20, avgQCYr21,
-		avgONYr15, avgONYr16, avgONYr17, avgONYr18, avgONYr19, avgONYr20, avgONYr21,
-		avgABYr15, avgABYr16, avgABYr17, avgABYr18, avgABYr19, avgABYr20, avgABYr21,
-		avgBCYr15, avgBCYr16, avgBCYr17, avgBCYr18, avgBCYr19, avgBCYr20, avgBCYr21,
-		avgAge31NA, avgAge32NA, avgAge33NA, avgAge31QC, avgAge32QC, avgAge33QC,
-		avgAge31ON, avgAge32ON, avgAge33ON, avgAge31AB, avgAge32AB, avgAge33AB,
-		avgAge31BC, avgAge32BC, avgAge33BC;
-	char year[row][MAX_CHAR], location[row][MAX_CHAR], ageGroup[row][MAX_CHAR], gender[row][MAX_CHAR], sizePercent[row][MAX_CHAR];
+	int col = COLUMN_SIZE, row = dataArrayInit(), digitLocation, digitAgeGroup, digitYear;
+	double arrayStatsData[row][col], avgData[LOCATIONS], avgYearData[LOCATIONS][END_YEAR-START_YEAR+1], 
+		avgAgeData[LOCATIONS][AGE_GROUPS], percentData[LOCATIONS][END_YEAR-START_YEAR+1],
+		sum = 0, count = 0, temp = 0, *countPtr = &count;
+	bool clearCheck = false; //For formatting of question 4...
+	char year[row][MAX_CHAR], location[row][MAX_CHAR], ageGroup[row][MAX_CHAR], gender[row][MAX_CHAR], sizePercent[row][MAX_CHAR],
+		*locationName, *ageGroupString;
+		
+	programHeader();
 	
 	//Reads and collects the respective data for each category...
 	dataArrayCollect(row, 1, 0, year);
@@ -259,332 +417,257 @@ int main(void)
 			arrayStatsData[i][4] = atof(sizePercent[i]);
 	}
 	
-	puts("Question 1a:\n"); //Question 1a:
-    
-    digitLocation = 22; //Quebec
-    printf("Average for Quebec: %0.2lf%%\n", provinceAverage(row, col, digitLocation, arrayStatsData));
-    
-    digitLocation = 23; //Ontario
-    printf("Average for Ontario: %0.2lf%%\n", provinceAverage(row, col, digitLocation, arrayStatsData));
-    
-    digitLocation = 24; //Alberta
-    printf("Average for Alberta: %0.2lf%%\n", provinceAverage(row, col, digitLocation, arrayStatsData));
-    
-    digitLocation = 25; //British Columbia
-    printf("Average for British Columbia: %0.2lf%%\n", provinceAverage(row, col, digitLocation, arrayStatsData));
-    
-    puts("\nQuestion 1b:\n"); //Question 1b:
-    
-    digitLocation = 21; //Canada (excluding territories)
-    printf("National Average (Canada Excluding Territores): %0.2lf%%\n", provinceAverage(row, col, digitLocation, arrayStatsData));
-    
-    puts("\nQuestion 1c:\n"); //Question 1c:
-    
-    //Calculations for National Average...
-    
-    for (int i = START_YEAR; i < END_YEAR + 1; i++) {
-		sum = yearlyAverages(row, col, countPtr, digitLocation, i, arrayStatsData);
-		
-		if (i == 2015)
-			avgNAYr15 = sum/count;
-		else if (i == 2016)
-			avgNAYr16 = sum/count;
-		else if (i == 2017)
-			avgNAYr17 = sum/count;
-		else if (i == 2018)
-			avgNAYr18 = sum/count;
-		else if (i == 2019)
-			avgNAYr19 = sum/count;
-		else if (i == 2020)
-			avgNAYr20 = sum/count;
-		else if (i == 2021)
-			avgNAYr21 = sum/count;
-			
-		count = 0;
-	}
-	
-    printf("National Average (Canada Excluding Territores) for 2015: %0.2lf%%\n", avgNAYr15);
-    printf("National Average (Canada Excluding Territores) for 2016: %0.2lf%%\n", avgNAYr16);
-    printf("National Average (Canada Excluding Territores) for 2017: %0.2lf%%\n", avgNAYr17);
-    printf("National Average (Canada Excluding Territores) for 2018: %0.2lf%%\n", avgNAYr18);
-    printf("National Average (Canada Excluding Territores) for 2019: %0.2lf%%\n", avgNAYr19);
-    printf("National Average (Canada Excluding Territores) for 2020: %0.2lf%%\n", avgNAYr20);
-    printf("National Average (Canada Excluding Territores) for 2021: %0.2lf%%\n\n", avgNAYr21);
-    
-    //Calculations for Quebec Average...
-    
-    digitLocation = 22;
-    
-    for (int i = START_YEAR; i < END_YEAR + 1; i++) {
-		sum = yearlyAverages(row, col, countPtr, digitLocation, i, arrayStatsData);
-		
-		if (i == 2015)
-			avgQCYr15 = sum/count;
-		else if (i == 2016)
-			avgQCYr16 = sum/count;
-		else if (i == 2017)
-			avgQCYr17 = sum/count;
-		else if (i == 2018)
-			avgQCYr18 = sum/count;
-		else if (i == 2019)
-			avgQCYr19 = sum/count;
-		else if (i == 2020)
-			avgQCYr20 = sum/count;
-		else if (i == 2021)
-			avgQCYr21 = sum/count;
-			
-		count = 0;
-	}
-    
-    printf("Quebec Average (Canada Excluding Territores) for 2015: %0.2lf%%\n", avgQCYr15);
-    printf("Quebec Average (Canada Excluding Territores) for 2016: %0.2lf%%\n", avgQCYr16);
-    printf("Quebec Average (Canada Excluding Territores) for 2017: %0.2lf%%\n", avgQCYr17);
-    printf("Quebec Average (Canada Excluding Territores) for 2018: %0.2lf%%\n", avgQCYr18);
-    printf("Quebec Average (Canada Excluding Territores) for 2019: %0.2lf%%\n", avgQCYr19);
-    printf("Quebec Average (Canada Excluding Territores) for 2020: %0.2lf%%\n", avgQCYr20);
-    printf("Quebec Average (Canada Excluding Territores) for 2021: %0.2lf%%\n\n", avgQCYr21);
-    
-    //Calculations for Ontario Average...
-    
-    digitLocation = 23;
-    
-    for (int i = START_YEAR; i < END_YEAR + 1; i++) {
-		sum = yearlyAverages(row, col, countPtr, digitLocation, i, arrayStatsData);
-		
-		if (i == 2015)
-			avgONYr15 = sum/count;
-		else if (i == 2016)
-			avgONYr16 = sum/count;
-		else if (i == 2017)
-			avgONYr17 = sum/count;
-		else if (i == 2018)
-			avgONYr18 = sum/count;
-		else if (i == 2019)
-			avgONYr19 = sum/count;
-		else if (i == 2020)
-			avgONYr20 = sum/count;
-		else if (i == 2021)
-			avgONYr21 = sum/count;
-			
-		count = 0;
-	}
-    
-    printf("Ontario Average (Canada Excluding Territores) for 2015: %0.2lf%%\n", avgONYr15);
-    printf("Ontario Average (Canada Excluding Territores) for 2016: %0.2lf%%\n", avgONYr16);
-    printf("Ontario Average (Canada Excluding Territores) for 2017: %0.2lf%%\n", avgONYr17);
-    printf("Ontario Average (Canada Excluding Territores) for 2018: %0.2lf%%\n", avgONYr18);
-    printf("Ontario Average (Canada Excluding Territores) for 2019: %0.2lf%%\n", avgONYr19);
-    printf("Ontario Average (Canada Excluding Territores) for 2020: %0.2lf%%\n", avgONYr20);
-    printf("Ontario Average (Canada Excluding Territores) for 2021: %0.2lf%%\n\n", avgONYr21);
-    
-    //Calculations for Alberta Average...
-    
-    digitLocation = 24;
-    
-    for (int i = START_YEAR; i < END_YEAR + 1; i++) {
-		sum = yearlyAverages(row, col, countPtr, digitLocation, i, arrayStatsData);
-		
-		if (i == 2015)
-			avgABYr15 = sum/count;
-		else if (i == 2016)
-			avgABYr16 = sum/count;
-		else if (i == 2017)
-			avgABYr17 = sum/count;
-		else if (i == 2018)
-			avgABYr18 = sum/count;
-		else if (i == 2019)
-			avgABYr19 = sum/count;
-		else if (i == 2020)
-			avgABYr20 = sum/count;
-		else if (i == 2021)
-			avgABYr21 = sum/count;
-			
-		count = 0;
-	}
-    
-    printf("Alberta Average (Canada Excluding Territores) for 2015: %0.2lf%%\n", avgABYr15);
-    printf("Alberta Average (Canada Excluding Territores) for 2016: %0.2lf%%\n", avgABYr16);
-    printf("Alberta Average (Canada Excluding Territores) for 2017: %0.2lf%%\n", avgABYr17);
-    printf("Alberta Average (Canada Excluding Territores) for 2018: %0.2lf%%\n", avgABYr18);
-    printf("Alberta Average (Canada Excluding Territores) for 2019: %0.2lf%%\n", avgABYr19);
-    printf("Alberta Average (Canada Excluding Territores) for 2020: %0.2lf%%\n", avgABYr20);
-    printf("Alberta Average (Canada Excluding Territores) for 2021: %0.2lf%%\n\n", avgABYr21);
-    
-    //Calculations for British Columbia Average...
-	
-	digitLocation = 25;
-	
-	for (int i = START_YEAR; i < END_YEAR + 1; i++) {
-		sum = yearlyAverages(row, col, countPtr, digitLocation, i, arrayStatsData);
-		
-		if (i == 2015)
-			avgBCYr15 = sum/count;
-		else if (i == 2016)
-			avgBCYr16 = sum/count;
-		else if (i == 2017)
-			avgBCYr17 = sum/count;
-		else if (i == 2018)
-			avgBCYr18 = sum/count;
-		else if (i == 2019)
-			avgBCYr19 = sum/count;
-		else if (i == 2020)
-			avgBCYr20 = sum/count;
-		else if (i == 2021)
-			avgBCYr21 = sum/count;
-			
-		count = 0;
-	}
-	
-	printf("British Columbia Average (Canada Excluding Territores) for 2015: %0.2lf%%\n", avgBCYr15);
-    printf("British Columbia Average (Canada Excluding Territores) for 2016: %0.2lf%%\n", avgBCYr16);
-    printf("British Columbia Average (Canada Excluding Territores) for 2017: %0.2lf%%\n", avgBCYr17);
-    printf("British Columbia Average (Canada Excluding Territores) for 2018: %0.2lf%%\n", avgBCYr18);
-    printf("British Columbia Average (Canada Excluding Territores) for 2019: %0.2lf%%\n", avgBCYr19);
-    printf("British Columbia Average (Canada Excluding Territores) for 2020: %0.2lf%%\n", avgBCYr20);
-    printf("British Columbia Average (Canada Excluding Territores) for 2021: %0.2lf%%\n", avgBCYr21);
-	
-	puts("\nQuestion 1d:\n"); //Question 1d:
-	
-	//Calculations for National Average...
-	
-	digitLocation = 21; //Canada (excluding territories)
-	
-	digitAgeGroup = 31; //35 to 49 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge31NA = sum/count;
-    
-    digitAgeGroup = 32; //50 to 64 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge32NA = sum/count;
-    
-    digitAgeGroup = 33; //65 years and over
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge33NA = sum/count;
-    
-    printf("National Average (Canada Excluding Territores) for Age Group (35-49): %0.2lf%%\n", avgAge31NA);
-    printf("National Average (Canada Excluding Territores) for Age Group (50-64): %0.2lf%%\n", avgAge32NA);
-    printf("National Average (Canada Excluding Territores) for Age Group (65+): %0.2lf%%\n\n", avgAge33NA);
-	
-	//Calculations for Quebec Average...
+	puts("Question 1a: ----------------------------------------------------------------------\n"); //Question 1a:
 	
 	digitLocation = 22; //Quebec
 	
-	digitAgeGroup = 31; //35 to 49 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge31QC = sum/count;
-    
-    digitAgeGroup = 32; //50 to 64 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge32QC = sum/count;
-    
-    digitAgeGroup = 33; //65 years and over
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge33QC = sum/count;
-    
-    printf("Quebec Average for Age Group (35-49): %0.2lf%%\n", avgAge31QC);
-    printf("Quebec Average for Age Group (50-64): %0.2lf%%\n", avgAge32QC);
-    printf("Quebec Average for Age Group (65+): %0.2lf%%\n\n", avgAge33QC);
+	for (int i = 0; i < LOCATIONS - 1; i++) {
+		locationName = locationStringFill(digitLocation);
+		
+		avgData[i] = locationAverage(row, col, digitLocation, arrayStatsData);
+		printf("Average for %s: %0.2lf%%\n", locationName, avgData[i]);
+		digitLocation++;
+	}
 	
-	//Calculations for Ontario Average...
+	puts("\nQuestion 1b: ----------------------------------------------------------------------\n"); //Question 1b:
 	
-	digitLocation = 23; //Ontario
+	digitLocation = 21; //Canada (excluding territories)
+	avgData[LOCATIONS-1] = locationAverage(row, col, digitLocation, arrayStatsData);
+	printf("National Average (Canada Excluding Territores): %0.2lf%%\n", avgData[LOCATIONS-1]);
 	
-	digitAgeGroup = 31; //35 to 49 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge31ON = sum/count;
-    
-    digitAgeGroup = 32; //50 to 64 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge32ON = sum/count;
-    
-    digitAgeGroup = 33; //65 years and over
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge33ON = sum/count;
-    
-    printf("Ontario Average for Age Group (35-49): %0.2lf%%\n", avgAge31ON);
-    printf("Ontario Average for Age Group (50-64): %0.2lf%%\n", avgAge32ON);
-    printf("Ontario Average for Age Group (65+): %0.2lf%%\n\n", avgAge33ON);
+	puts("\nQuestion 1c: ----------------------------------------------------------------------\n"); //Question 1c:
 	
-	//Calculations for Alberta Average...
+	//Calculations for each locations average per year...
+	for (int i = 0; i < LOCATIONS; i++) {
+		digitYear = START_YEAR;
+		
+		locationName = locationStringFill(digitLocation);
+		
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {			
+			sum = yearlyAverages(row, col, countPtr, digitLocation, digitYear, arrayStatsData);
+			avgYearData[i][j] = sum/count;
+			printf("%s for %d: %0.2lf%%\n", locationName, digitYear, avgYearData[i][j]);
+			
+			count = 0;
+			digitYear++;
+		}
+		
+		puts("");
+		digitLocation++;
+	}
 	
-	digitLocation = 24; //Alberta
+	puts("Question 1d: ----------------------------------------------------------------------\n"); //Question 1d:
 	
-	digitAgeGroup = 31; //35 to 49 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge31AB = sum/count;
-    
-    digitAgeGroup = 32; //50 to 64 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge32AB = sum/count;
-    
-    digitAgeGroup = 33; //65 years and over
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge33AB = sum/count;
-    
-    printf("Alberta Average for Age Group (35-49): %0.2lf%%\n", avgAge31AB);
-    printf("Alberta Average for Age Group (50-64): %0.2lf%%\n", avgAge32AB);
-    printf("Alberta Average for Age Group (65+): %0.2lf%%\n\n", avgAge33AB);
+	digitLocation = 21; //Canada (excluding territories)
 	
-	//Calculations for British Columbia Average...
+	//Calculations for each locations average per age group...
+	for (int i = 0; i < LOCATIONS; i++) {
+		digitAgeGroup = 31;
+		
+		locationName = locationStringFill(digitLocation);
+		
+		for (int j = 0; j < AGE_GROUPS; j++) {
+			switch (digitAgeGroup) {
+			case 31:
+				ageGroupString = "(35-49)";
+				break;
+				
+			case 32:
+				ageGroupString = "(50-64)";
+				break;
+				
+			case 33:
+				ageGroupString = "(65+)";
+				break;
+				
+			default:
+				ageGroupString = "####";
+				break;
+			}
+			
+			sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
+			avgAgeData[i][j] = sum/count;
+			printf("%s for Age Group %s: %0.2lf%%\n", locationName, ageGroupString, avgAgeData[i][j]);
+			
+			count = 0;
+			digitAgeGroup++;
+		}
+		
+		puts("");
+		digitLocation++;
+	}
 	
-	digitLocation = 25; //British Columbia
+	puts("Question 2: ----------------------------------------------------------------------\n"); //Question 2:
 	
-	digitAgeGroup = 31; //35 to 49 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge31BC = sum/count;
-    
-    digitAgeGroup = 32; //50 to 64 years
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge32BC = sum/count;
-    
-    digitAgeGroup = 33; //65 years and over
-	count = 0;
-    sum = ageGroupAverages(row, col, countPtr, digitLocation, digitAgeGroup, arrayStatsData);
-    avgAge33BC = sum/count;
-    
-    printf("British Columbia Average for Age Group (35-49): %0.2lf%%\n", avgAge31BC);
-    printf("British Columbia Average for Age Group (50-64): %0.2lf%%\n", avgAge32BC);
-    printf("British Columbia Average for Age Group (65+): %0.2lf%%\n\n", avgAge33BC);
+	//Calculations for highest diabetes...
+	for (int i = 0; i < LOCATIONS - 1; i++) {
+		if (avgData[i] > temp) {
+			temp = avgData[i];
+			digitLocation = i;
+		}
+	}
 	
-	puts("\nQuestion 2:\n"); //Question 2:
+	locationName = locationStringFill(digitLocation);
+	printf("Province with the highest diabetes rate: %s --> %.2lf%%\n", locationName, temp);
 	
-	//PLACE CODE HERE>>>
+	//Calculations for lowest diabetes...
+	for (int i = 0; i < LOCATIONS - 1; i++) {
+		if (avgData[i] < temp) {
+			temp = avgData[i];
+			digitLocation = i;
+		}
+	}
 	
-	puts("\nQuestion 3:\n"); //Question 3:
+	locationName = locationStringFill(digitLocation);
+	printf("Province with the lowest diabetes rate: %s --> %.2lf%%\n", locationName, temp);
 	
-	//PLACE CODE HERE>>>
+	puts("\nQuestion 3: ----------------------------------------------------------------------\n"); //Question 3:
 	
-	puts("\nQuestion 4:\n"); //Question 4:
+	//Calculations for nationally higher/lower diabetes...
+	for (int i = 0; i < LOCATIONS - 1; i++) {
+		if (avgData[i] > avgData[LOCATIONS-1]) {
+			printf("%s is above the national average!\n", locationStringFill(i));
+		}
+		
+		else if (avgData[i] < avgData[LOCATIONS-1]) {
+			printf("%s is below the national average!\n", locationStringFill(i));
+		}
+		
+		else
+			printf("Error: Something went wrong with the operation(s)!\n");
+	}
 	
-	//PLACE CODE HERE>>> Evan will finish this part!
+	puts("\nQuestion 4: ----------------------------------------------------------------------\n"); //Question 4:
+	
+	//Re-initializing needed variables...
+	temp = 0;
+	arrayReset(percentData);
+	
+	//Calculations for highest diabetes in a year...
+	for (int i = 1; i < LOCATIONS; i++) {
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+			//Resets all stored values and puts in the new corresponding data...
+			if (avgYearData[i][j] > temp) {				
+				temp = avgYearData[i][j];
+				arrayReset(percentData);
+				
+				percentData[0][i-1] = i-1;
+				percentData[i][j] = avgYearData[i][j];
+			}
+			
+			//Collects like values and stores the locations and years...
+			else if (avgYearData[i][j] == temp) {
+				percentData[0][i-1] = i-1;
+				percentData[i][j] = avgYearData[i][j];
+			}
+		}		
+	}
+	
+	printf("Province(s) with the highest diabetes rate:\n"); 
+	
+	for (int i = 1; i < LOCATIONS; i++) {
+		digitYear = START_YEAR;
+		
+		if (percentData[0][i-1] != -1) {
+			printf("\n%s --> ", locationStringFill(percentData[0][i-1]));
+		
+			for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+				if (percentData[i][j] != -1) {
+					//Cleans up the output format...
+					switch (digitYear) {
+						case START_YEAR:
+							printf("%0.2lf%% (%d)", percentData[i][j], digitYear);
+							clearCheck = true;
+							break;
+							
+						default:
+							if (clearCheck) //Allows for clean formatting...
+								printf(" - %0.2lf%% (%d)", percentData[i][j], digitYear);
+							else
+								printf("%0.2lf%% (%d)", percentData[i][j], digitYear);
+							break;
+					}
+				}
+				
+				digitYear++;
+			}
+		}
+	}
+	
+	clearCheck = false;
+	
+	//Calculations for lowest diabetes in a year...
+	for (int i = 1; i < LOCATIONS; i++) {
+		for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+			if (avgYearData[i][j] < temp) {
+				//Resets all stored values and puts in the new corresponding data...
+				temp = avgYearData[i][j];
+				arrayReset(percentData);
+				
+				percentData[0][i-1] = i-1;
+				percentData[i][j] = avgYearData[i][j];
+			}
+			
+			//Collects like values and stores the locations and years...
+			else if (avgYearData[i][j] == temp) {
+				percentData[0][i-1] = i-1;
+				percentData[i][j] = avgYearData[i][j];
+			}
+		}		
+	}
+	
+	printf("\n\nProvince(s) with the lowest diabetes rate:\n"); 
+	
+	for (int i = 1; i < LOCATIONS; i++) {
+		digitYear = START_YEAR;
+		
+		if (percentData[0][i-1] != -1) {
+			printf("\n%s --> ", locationStringFill(percentData[0][i-1]));
+		
+			for (int j = 0; j < END_YEAR-START_YEAR+1; j++) {
+				if (percentData[i][j] != -1) {
+					//Cleans up the output format...
+					switch (digitYear) {
+						case START_YEAR:
+							printf("%0.2lf%% (%d)", percentData[i][j], digitYear);
+							clearCheck = true;
+							break;
+							
+						default: 
+							if (clearCheck) //Allows for clean formatting...
+								printf(" - %0.2lf%% (%d)", percentData[i][j], digitYear);
+							else
+								printf("%0.2lf%% (%d)", percentData[i][j], digitYear);
+							break;
+					}
+				}
+				
+				digitYear++;
+			}
+		}
+	}
+	
+	clearCheck = false;
+	
+	puts("\n\n----------------------------------------------------------------------\n");
+	
+	dataWrite(avgYearData, avgAgeData); //Writes all calculated data onto a txt file for GNUPlot graphing...
+	
+	printf("\nThank you for using our program!\nPlease continue by loading given scripts files onto GNUPlot to visually see the data calculated here...");
 	
 	return 0;
 }
 
-/* Important Details:
+ /* Important Details:
  * 
- * For any blank entries in the CSV have been denoted with an '@' symbol; 
+ * For any blank entries in the CSV file, an '@' symbol is used to denote it as empty; 
  * this will be substituted with a '-1' value in arrayStatsData[][]. All data 
  * for the questions will be retrieved from arrayStatsData[][] variable to
  * simplify casting double values. String data will be given specific 
  * designation digits which will be run through switch-case statements in 
  * order to match the original string to the data.
  * 
- * The following information the digit designation for all string statements:
+ * The following information covers the digit designations for all string statements:
  * 
  * 21.0 -> "Canada (excluding territories)"
  * 22.0 -> "Quebec"
@@ -610,4 +693,25 @@ int main(void)
  * 2 -> Age Group (31.0 - 33.0)
  * 3 -> Gender (41.0 - 42.0)
  * 4 -> Percent of Population (%)
+ * 
+ * The following information is about the storage behaviour of the constructed arrays:
+ * 
+ * arrayStatsData[row][col] -> {Year, Location, Age Group, Sex, (%) Value}
+ * avgData[LOCATIONS] -> {Quebec (%), Ontario (%), Alberta (%), British Columbia (%), Canada (%)}
+ * 
+ * avgYearData[LOCATIONS][END_YEAR-START_YEAR+1]--
+ * [0. Canada] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [1. Quebec] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [2. Ontario] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [3. Alberta] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * [4. British Columbia] -> {2015 (%), 2016 (%), 2017 (%), 2018 (%), 2019 (%), 2020 (%), 2021 (%)}
+ * 
+ * avgAgeData[LOCATIONS][AGE_GROUPS]--
+ * [0. Canada] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [1. Quebec] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [2. Ontario] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [3. Alberta] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * [4. British Columbia] -> {35 to 49 years (%), 50 to 64 years (%), 65 years and over (%)}
+ * 
+ * NOTE: This important details section can be referred to at both the beginning and end of the program!
  */
