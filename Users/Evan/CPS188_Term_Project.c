@@ -82,6 +82,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
 #include <string.h>
@@ -114,7 +115,7 @@ int dataArrayInit() {
 	//File validation...
 	if (rowCheck == NULL) {
 		printf("Error: File could not be opened! Try again!");
-		return 1;
+		exit(1);
 	}
 	
 	for (in = getc(rowCheck); in != EOF; in = getc(rowCheck)) {
